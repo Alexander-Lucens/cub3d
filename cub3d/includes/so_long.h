@@ -25,6 +25,8 @@
 
 # define SEGMENT_SIZE 32
 
+#define MOVE_DELAY 500
+
 typedef struct s_pos
 {
 	int	x;
@@ -68,12 +70,25 @@ typedef struct s_map
 	t_pos	*coins;
 }	t_map;
 
+typedef struct s_controls
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	// Для cub3d также понадобятся повороты
+	// int rot_left;
+	// int rot_right;
+}	t_controls;
+
 typedef struct s_game
 {
 	t_graphics	graphics;
 	t_map		map;
 	int			moves;
 	t_pos		player_direction;
+	t_controls	controls;
+	int			move_cooldown;
 }	t_game;
 
 // t_pos
@@ -99,7 +114,11 @@ void	check_accessability(t_game *game);
 int		init_data(t_game *game, char *map_addr);
 int		ft_error(t_game *game, int status_code);
 void	move_player(t_game *game, int dx, int dy);
-int		key_press(int keycode, void *param);
+
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+int		update(t_game *game);
+
 void	display_game(t_game *game);
 // void	safe_free(void *str);
 void	s_free(t_game *game);
