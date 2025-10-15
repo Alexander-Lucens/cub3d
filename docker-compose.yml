@@ -4,14 +4,14 @@ services:
     build: .
     container_name: cub3d
     volumes:
-      # Mount the project directory
       - ./:/home/student/project
-      # Securely mount the X11 authentication cookie (NEW)
       - ~/.Xauthority:/home/student/.Xauthority:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
-      # Point to the host display via network
-      - DISPLAY=host.docker.internal:0
-      # Point to the mounted authentication cookie (NEW)
+      - DISPLAY=192.168.178.42:0
       - XAUTHORITY=/home/student/.Xauthority
+      - LIBGL_ALWAYS_INDIRECT=1
+      - XKB_DEFAULT_LAYOUT=us
+
     tty: true
     stdin_open: true
