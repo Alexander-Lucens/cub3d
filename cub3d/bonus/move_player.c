@@ -88,9 +88,7 @@ void	move_player(t_game *game, int dx, int dy)
 {
 	t_pos	new;
 	t_pos	d;
-	int		moves;
 
-	moves = game->moves;
 	new = init_tpos(game->map.player.position.x + dx, \
 		game->map.player.position.y + dy);
 	d = init_tpos(dx, dy);

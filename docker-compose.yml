@@ -1,14 +1,17 @@
 services:
-  # 'dev' должно быть с отступом в 2 пробела
   dev:
-    # 'image', 'build' и другие - еще на 2 пробела глубже
     image: cub3d-env
     build: .
     container_name: cub3d
     volumes:
+      # Mount the project directory
       - ./:/home/student/project
-      - /tmp/.X11-unix:/tmp/.X11-unix
+      # Securely mount the X11 authentication cookie (NEW)
+      - ~/.Xauthority:/home/student/.Xauthority:ro
     environment:
-      - DISPLAY=$DISPLAY
+      # Point to the host display via network
+      - DISPLAY=host.docker.internal:0
+      # Point to the mounted authentication cookie (NEW)
+      - XAUTHORITY=/home/student/.Xauthority
     tty: true
-    stdin_open: true	
+    stdin_open: true

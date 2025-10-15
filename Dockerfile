@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y \
 RUN git clone https://github.com/42paris/minilibx-linux.git /usr/local/src/minilibx
 RUN cd /usr/local/src/minilibx && make
 
+RUN cp /usr/local/src/minilibx/mlx.h /usr/local/include/
+RUN cp /usr/local/src/minilibx/libmlx.a /usr/local/lib/
+
 RUN useradd -m -u 1000 -s /bin/bash student
 WORKDIR /home/student/project
 USER student

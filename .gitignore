@@ -1,0 +1,8 @@
+.DS_Store
+*/.DS_Store
+
+#Ignore .o
+*/*.o
+/cub3d/*objs
+/cub3d/*/*.o
+
