@@ -29,41 +29,14 @@ SRCS = \
 	src/gnl/get_next_line.c\
 	src/gnl/get_next_line_utils.c
 
-SRCS_BONUS = \
-	bonus/main.c \
-	bonus/show_info.c \
-	bonus/check_map_extension.c \
-	bonus/init_graphics.c \
-	bonus/init_img.c \
-	bonus/fill_coins_position.c \
-	bonus/map_str_to_matrix.c \
-	bonus/check_border.c \
-	bonus/dfs.c \
-	bonus/clean_matrix.c \
-	bonus/check_accessability.c \
-	bonus/init_data.c \
-	bonus/ft_error.c \
-	bonus/move_player.c \
-	bonus/key_press.c \
-	bonus/display_game.c \
-	bonus/close_game.c \
-	bonus/s_free.c \
-	bonus/gnl/get_next_line.c\
-	bonus/gnl/get_next_line_utils.c
-
 MY_HEADERS = $(CUR_DIR)/includes/so_long.h
 
 OBJS = $(SRCS:.c=.o)
-
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all:  $(NAME)
 
 $(NAME): $(LIBFT_DIR)/libft.a $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
-
-bonus: $(LIBFT_DIR)/libft.a $(OBJS_BONUS)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(LIBFT_DIR)/libft.a:
 	$(MAKE) -C $(LIBFT_DIR)
