@@ -1,0 +1,14 @@
+services:
+  # 'dev' должно быть с отступом в 2 пробела
+  dev:
+    # 'image', 'build' и другие - еще на 2 пробела глубже
+    image: cub3d-env
+    build: .
+    container_name: cub3d
+    volumes:
+      - ./:/home/student/project
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=$DISPLAY
+    tty: true
+    stdin_open: true	
