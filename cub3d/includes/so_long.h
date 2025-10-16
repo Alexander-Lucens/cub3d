@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:08 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/04/14 17:21:13 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/16 11:04:16 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define SEGMENT_SIZE 32
 
-#define MOVE_DELAY 500
+#define MOVE_DELAY 50000
 
 typedef struct s_pos
 {

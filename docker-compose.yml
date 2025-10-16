@@ -1,17 +1,23 @@
 services:
   dev:
-    image: cub3d-env
     build: .
     container_name: cub3d
+    
+    platform: linux/amd64
+
     volumes:
       - ./:/home/student/project
-      - ~/.Xauthority:/home/student/.Xauthority:ro
-      - /tmp/.X11-unix:/tmp/.X11-unix
+    ports:
+      - "5900:5900"
     environment:
-      - DISPLAY=192.168.178.42:0
-      - XAUTHORITY=/home/student/.Xauthority
-      - LIBGL_ALWAYS_INDIRECT=1
-      - XKB_DEFAULT_LAYOUT=us
-
+      - DISPLAY=:0
     tty: true
     stdin_open: true
+    command: >
+      bash -c "
+        Xvfb :0 -screen 0 1280x800x24 >/proc/1/fd/1 2>&1 &
+        sleep 1
+        fluxbox >/proc/1/fd/1 2>&1 &
+        sleep 1
+        exec x11vnc -display :0 -nopw -forever -shared -rfbport 5900 -noxdamage -o /proc/1/fd/1
+      "

@@ -47,15 +47,13 @@ $(LIBFT_DIR)/libft.a:
 clean: 	
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS)
-	$(RM) $(OBJS_BONUS)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
 
 re:	fclean all
-		$(MAKE) -C $(LIBFT_DIR) clean
+		$(MAKE) -C $(LIBFT_DIR)
 		$(RM) $(OBJS)
-		$(RM) $(OBJS_BONUS)
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
