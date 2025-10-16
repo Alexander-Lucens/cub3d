@@ -25,7 +25,7 @@
 
 # define SEGMENT_SIZE 32
 
-#define MOVE_DELAY 50000
+#define MOVE_DELAY 1000
 
 typedef struct s_pos
 {
