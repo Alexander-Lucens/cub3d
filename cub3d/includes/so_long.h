@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:08 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/20 13:37:34 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/20 14:41:24 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,23 @@
 
 #define MOVE_DELAY 1000
 
+# define FLOOR 0
+# define WALL 1
+# define SOUTH "S"
+# define WEST "W"
+# define EAST "E"
+# define NORTH "N"
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
 
-# define SOUTH
-# define WEST
-# define EAST
-# define NORTH 
+# define NORTH_TEXTURE "NO"
+# define SOUTH_TEXTURE "SO"
+# define WEST_TEXTURE "WE"
+# define EAST_TEXTURE "EA"
+# define FLOOR_COLOR "F"
+# define CEILING_COLOR "C"
+
+// COLOR
 
 
 typedef struct s_pos
@@ -75,6 +87,8 @@ typedef struct s_player
 	t_pos	position;
 	t_pos 	direction;
 	int		controls;
+	t_pos	left;
+	t_pos	right;
 }	t_player;
 
 typedef struct s_game
