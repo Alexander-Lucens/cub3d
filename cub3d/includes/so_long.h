@@ -6,7 +6,11 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:08 by akuzmin           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/10/20 15:24:47 by akuzmin          ###   ########.fr       */
+=======
+/*   Updated: 2025/10/20 15:18:22 by akuzmin          ###   ########.fr       */
+>>>>>>> b7af8de (Finish at home)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +78,7 @@ typedef struct s_graphics
 // changed <matrix> int ** --> char ** (saved *4)
 typedef struct s_map
 {
-	// char	*map; - 
-	char	**matrix;
-	// int		rows;
-	// int		cols;
+	char	**grid;
 	int		map_width;
 	int		map_height;
 }	t_map;
