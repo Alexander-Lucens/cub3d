@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:08 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/20 14:41:24 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/20 15:24:47 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct s_graphics
 {
 	void	*mlx;
 	void	*window;
-	void	*boarder;	
-	void	*background;
+	void	*floor;	
+	void	*ceiling;
 	void	*north_texture;
 	void	*south_texture;
 	void	*east_texture;
@@ -87,8 +87,6 @@ typedef struct s_player
 	t_pos	position;
 	t_pos 	direction;
 	int		controls;
-	t_pos	left;
-	t_pos	right;
 }	t_player;
 
 typedef struct s_game

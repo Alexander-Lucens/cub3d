@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/20 14:07:13 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/20 15:26:19 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		perror("Usage: ./so_long <./maps/some_map.bmp>");
+		perror("Usage: ./cub3d <./maps/some_map.bmp>");
 		return (0);
 	}
+
+	
 	// There will be all Parser LOGIC
-	game = parser(av[1]);
+	// game = parser(av[1]);
+	
+	
 	/*
 	game = ft_calloc(sizeof(t_game), sizeof(t_game));
 	if (!game)
@@ -38,8 +42,7 @@ int	main(int ac, char **av)
 	*/
 	
 	game = mock_data_create();
-	// Get key press and move in cub3d make it work with float numbers
-	game->move_cooldown = 0;
+	
 	mlx_hook(game->graphics.win, 2, 1L << 0, key_press, game);
 	mlx_hook(game->graphics.win, 3, 1L << 1, key_release, game);
 	mlx_hook(game->graphics.win, 17, 0, close_game, game);
@@ -52,6 +55,36 @@ int	main(int ac, char **av)
 	return (0);
 }
 
+char **create_mock_map(void) {
+	char **map = ft_calloc(sizeof(char*), 15);
+	if (!map)
+		return exit(1);
+	
+	map[0] = "        1111111111111111111111111";
+	map[1] = "        1000000000110000000000001";
+    map[2] = "        1011000001110000000000001";
+    map[3] = "        1001000000000000000000001";
+	map[1] = "111111111011000001110000000000001";
+	map[1] = "100000000011000001110111111111111";
+	map[1] = "11110110001111011100000010001";
+	map[1] = "11110111111111011101010010001
+	map[1] = "11000000110101011100000010001
+	map[1] = "10000000000000000000000010001
+	map[1] = "10000000000000001101010010001
+	map[1] = "11000001110101011111011110N0111
+	map[1] = "11110111 1110101 101111010001
+	map[1] = "11111111 1111111 111111111111";
+		
+
+	}
+}
+
+t_game* mock_data_create(void) {
+	game = ft_calloc(sizeof(t_game), sizeof(t_game));
+	if (!game)
+		return exit(1);
+	
+}	
 
 
 
