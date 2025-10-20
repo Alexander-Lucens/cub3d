@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:08 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/16 11:04:16 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/20 13:37:34 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,17 @@
 
 #define MOVE_DELAY 1000
 
+
+# define SOUTH
+# define WEST
+# define EAST
+# define NORTH 
+
+
 typedef struct s_pos
 {
-	int	x;
-	int	y;
+	float	x; // make float 
+	float	y; // make float
 }	t_pos;
 
 // changed <visited> int ** --> char ** (saved *4)
@@ -43,53 +50,42 @@ typedef struct s_dfs
 typedef struct s_graphics
 {
 	void	*mlx;
-	void	*win;
-	void	*border;
-	void	*exit;
-	void	*coins;
+	void	*window;
+	void	*boarder;	
 	void	*background;
-	void	*player_right;
-	void	*player_left;
-	void	*player_top;
-	void	*player_bottom;
+	void	*north_texture;
+	void	*south_texture;
+	void	*east_texture;
+	void	*west_texture;
 }	t_graphics;
 
 // changed <matrix> int ** --> char ** (saved *4)
 typedef struct s_map
 {
-	char	*map;
+	// char	*map; - 
 	char	**matrix;
-	int		rows;
-	int		cols;
-	int		coins_all;
-	int		coins_left;
-	int		window_width;
-	int		window_height;
-	t_pos	player;
-	t_pos	exit;
-	t_pos	*coins;
+	// int		rows;
+	// int		cols;
+	int		map_width;
+	int		map_height;
 }	t_map;
 
-typedef struct s_controls
+typedef struct s_player
 {
-	int	w;
-	int	a;
-	int	s;
-	int	d;
-	// Для cub3d также понадобятся повороты
-	// int rot_left;
-	// int rot_right;
-}	t_controls;
+	t_pos	position;
+	t_pos 	direction;
+	int		controls;
+}	t_player;
 
 typedef struct s_game
 {
 	t_graphics	graphics;
 	t_map		map;
 	int			moves;
-	t_pos		player_direction;
-	t_controls	controls;
-	int			move_cooldown;
+	t_player	player;
 }	t_game;
+
+
 
 // t_pos
 t_pos	init_tpos(int x, int y);

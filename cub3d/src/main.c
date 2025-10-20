@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/04/14 17:19:00 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/20 13:37:45 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int	main(int ac, char **av)
 		perror("Usage: ./so_long <./maps/some_map.bmp>");
 		return (0);
 	}
+	// There will be all Parser LOGIC
+	game = parser(av[1]);
+	/*
 	game = ft_calloc(sizeof(t_game), sizeof(t_game));
 	if (!game)
 		return (0);
@@ -32,7 +35,9 @@ int	main(int ac, char **av)
 	init_data(game, av[1]);
 
 	ft_bzero(&game->controls, sizeof(t_controls));
-
+	*/
+	
+	game = mock_data_create();
 	// Get key press and move in cub3d make it work with float numbers
 	game->move_cooldown = 0;
 	mlx_hook(game->graphics.win, 2, 1L << 0, key_press, game);
@@ -46,3 +51,8 @@ int	main(int ac, char **av)
 	close_game(game);
 	return (0);
 }
+
+void mock_data_create()
+
+
+

@@ -2,7 +2,10 @@
 */.DS_Store
 
 #Ignore .o
-*/*.o
+*.o
 /cub3d/*objs
 /cub3d/*/*.o
+
+*.a
+so_long
 

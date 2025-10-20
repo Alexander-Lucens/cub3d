@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/04/07 14:33:43 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/20 13:10:25 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	key_release(int keycode, t_game *game)
 	return (0);
 }
 
+// convert int to float
 int	update(t_game *game)
 {
 	if (game->move_cooldown > 0)
