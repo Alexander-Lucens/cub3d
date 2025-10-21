@@ -1,33 +1,35 @@
 ## Structure 
 ``` s
 cub3d/
-├── Makefile          # Главный Makefile для сборки всего проекта и тестов
+├── Makefile
 │
-├── includes/         # Общие заголовочные файлы
-│   └── cub3d.h       # Определения ОСНОВНЫХ СТРУКТУР (t_map, t_game и т.д.)
+├── includes/
+│   └── cub3d.h
 │
-├── libft/            # Ваша библиотека Libft
+├── libft/
 │
-├── maps/             # Файлы карт .cub для тестирования
+├── maps/
 │
-├── textures/         # Файлы текстур .xpm
+├── textures/
 │
-├── src/
-│   ├── main.c        # Главный файл программы. Связывает парсер и рендерер.
-│   │
-│   ├── parser/       #  Parsing Logic (НЕ знает о MiniLibX)
-│   │   ├── parser.c          # Главная функция парсинга
-│   │   ├── validate_map.c    # Проверка стен, символов и т.д.
-│   │   ├── parse_elements.c  # Парсинг текстур и цветов (NO, SO, F, C)
-│   │   └── parser_utils.c    # Вспомогательные функции
-│   │
-│   └── renderer/     # Graphics Logic (НЕ знает о файлах .cub)
-│       ├── renderer.c      # Инициализация MLX, главный цикл
-│       ├── hooks.c         # Обработка событий клавиатуры/мыши
-│       ├── raycasting.c    # Логика рейкастинга
-│       └── draw.c          # Функции отрисовки (стены, пол, потолок)
-│
-└── tests/
-    └── test_parser.c   # "main" файл для компиляции и запуска тестов парсера
-
+└── src/
+    ├── main.c					# Finel root file
+    │
+    ├── parser/
+    │   ├── parser.c            # Core file of parser
+    │   ├── validate_map.c      # Map validation and throw error on issue
+    │   ├── parse_elements.c	# Add graphics element to struct
+    │   └── parser_utils.c		# Just utils
+    │
+    └── renderer/
+	│       ├── renderer.c      	# Initialise MLX, start game loop
+	│       ├── hooks.c         	# Key pres hooks
+	│       ├── raycasting.c    	# Raycasting, first of all for 2d then finde ot how to use this "rays" and >
+	│       └── draw.c          	# Draw textures (walls, floor, ceiling)
+	│
+	└── tests/
+		├── test_main.c				# Pre difine structures and "main" to run render separately from parser
+		├── test_cases.c			# This things try to run parser and compare it output with mok data
+		├──	moks_data.c				# Pre made date for 3 maps which will be in /maps folder
+		└──	test_parser.c			# Runs all test cases and make validation is parser past test or not
 ```

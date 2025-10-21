@@ -1,59 +1,96 @@
-CUR_DIR = $(shell pwd)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
+#    Updated: 2025/10/21 03:27:56 by akuzmin          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME = so_long
-CC = cc
+NAME		:=	so_long
 
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-RM = rm -f
-CFLAGS += -Wall -Wextra -Werror
-LIBFT_DIR = $(CUR_DIR)/Libft
+# **************************************************************************** #
 
+SRC_DIR		:=	src/
 
-SRCS = \
-	src/main.c \
-	src/check_map_extension.c \
-	src/init_graphics.c \
-	src/fill_coins_position.c \
-	src/map_str_to_matrix.c \
-	src/check_border.c \
-	src/dfs.c \
-	src/clean_matrix.c \
-	src/check_accessability.c \
-	src/init_data.c \
-	src/ft_error.c \
-	src/move_player.c \
-	src/key_press.c \
-	src/display_game.c \
-	src/close_game.c \
-	src/s_free.c \
-	src/gnl/get_next_line.c\
-	src/gnl/get_next_line_utils.c
+SUB_DIR		:=	core/ parser/ render/ input/
 
-MY_HEADERS = $(CUR_DIR)/includes/so_long.h
+OBJ_DIR		:=	objs/
 
-OBJS = $(SRCS:.c=.o)
+INC_DIR		:=	includes/
 
-all:  $(NAME)
+# **************************************************************************** #
 
-$(NAME): $(LIBFT_DIR)/libft.a $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
+SRCS		:=	main.c \
+				ft_error.c s_free.c \
+				check_map_extension.c map_str_to_matrix.c check_border.c \
+				check_accessability.c dfs.c clean_matrix.c init_data.c \
+				fill_coins_position.c \
+				init_graphics.c display_game.c close_game.c \
+				key_press.c move_player.c
 
-$(LIBFT_DIR)/libft.a:
-	$(MAKE) -C $(LIBFT_DIR)
-	
-%.o: %.c ../$(MY_HEADERS)
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 
-clean: 	
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(RM) $(OBJS)
+# **************************************************************************** #
+
+LIBFT_NAME	:=	libft.a
+
+LIBFT_DIR	:=	./Libft
+
+LIBFT		:=	$(LIBFT_DIR)/$(LIBFT_NAME)
+
+# **************************************************************************** #
+
+CC			:=	cc
+
+CFLAGS		:=	-Wall -Wextra -Werror
+
+g: CFLAGS	+=	-g
+
+CPPFLAGS	:=	-I$(INC_DIR) -I$(LIBFT_DIR)/include
+
+LIBFLAGS	:=	-L$(LIBFT_DIR) -l:$(LIBFT_NAME) -L/usr/lib/X11 -lXext -lX11 -lmlx
+
+RM			:=	rm -rf
+
+# * VPATH ******************************************************************* #
+
+vpath %.c $(SRC_DIR) $(patsubst %, $(SRC_DIR)%, $(SUB_DIR))
+
+# **************************************************************************** #
+
+all: $(NAME)
+
+g: fclean $(NAME)
+
+$(NAME): $(LIBFT) $(OBJ_DIR) $(OBJS)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LIBFLAGS) -o $(NAME)
+	@echo "Creating program $(NAME)."
+
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)"
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@echo "Creating $(OBJ_DIR) directory."
+
+$(OBJ_DIR)%.o: %.c
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@echo "Compiling $@."
+
+re: fclean all
+
+clean:
+	@$(RM) $(OBJ_DIR)
+	@echo "Deleting object files for program $(NAME)."
+	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "Deleting program $(NAME)."
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 
-re:	fclean all
-		$(MAKE) -C $(LIBFT_DIR)
-		$(RM) $(OBJS)
-
-.PHONY: all clean fclean re
+.PHONY: all re clean fclean g

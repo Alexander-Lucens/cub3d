@@ -1,3 +1,15 @@
+NO ./textures/wall
+
+SO ./textures/wall
+
+WE ./textures/wall
+
+EA ./textures/wall
+
+F 220,100,0
+
+C 225,30,0
+
 11111111111
 10000000001
 10000000001
