@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 03:15:42 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/21 19:07:03 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,21 @@ static char	*read_file(int fd)
 	return (out);
 }
 
-// Looks like huge part of it is not gona work and need to re-write
+/**
+ * @brief Initialize and validate parsed file data 
+ * 
+ * @param game 
+ * @param map_address 
+ * @return int * 
+ */
 int	init_data(t_game *game, char *map_address)
 {
-	int		fd;
-
-	game->map.rows = 0;
-	game->moves = 0;
-	check_map_extension(map_address, game);
-	fd = open(map_address, O_RDONLY);
-	if (fd == -1)
-		ft_error(game, 100);
-	game->map.map = read_file(game, fd);
-	check_ordinarity_of_lines(game);
-	if ((game->map.cols < 3 || game->map.rows < 3) && \
-		game->map.cols + game->map.cols < 8)
-		ft_error(game, 105);
-	map_str_to_matrix(game);
-	init_graphics(game);
+	if (!parse_cub_file(game, map_address))
+		return (-1);
+	if (!validate_game_data(game))
+        return (-1);
+	if (!init_graphics(game))
+        return (-1);
 	display_game(game);
 	return (0);
 }
