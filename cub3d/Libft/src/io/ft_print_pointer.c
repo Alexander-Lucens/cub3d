@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 23:45:53 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 02:19:21 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/21 11:34:56 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../include/ft_printf.h"
 
 // for linus (nil) for macOS 0x0
 ssize_t	ft_print_pointer(void *ptr)
