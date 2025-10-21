@@ -24,7 +24,7 @@ cub3d/
     └── renderer/
 	│       ├── renderer.c      	# Initialise MLX, start game loop
 	│       ├── hooks.c         	# Key pres hooks
-	│       ├── raycasting.c    	# Raycasting, first of all for 2d then finde ot how to use this "rays" and >
+	│       ├── raycasting.c    	
 	│       └── draw.c          	# Draw textures (walls, floor, ceiling)
 	│
 	└── tests/
