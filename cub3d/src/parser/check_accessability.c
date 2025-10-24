@@ -3,34 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_accessability.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 05:05:46 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 17:29:43 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int	coins_counting(t_game *game, t_dfs *data)
-{
-	int		solvable;
-	int		coin_c;
 
-	coin_c = 0;
-	solvable = 0;
-	if (game->map.coins_all == 0)
-		return (0);
-	while (coin_c < game->map.coins_all)
-	{
-		data->find = game->map.coins[coin_c++];
-		solvable += dfs(*game, game->map.player.x, game->map.player.y, data);
-		clean_matrix(data, *game);
-	}
-	return (solvable);
-}
-
-void	check_accessability(t_game *game)
+/* void	check_accessability(t_game *game)
 {
 	t_dfs	data;
 	int		solvable;
@@ -47,4 +30,4 @@ void	check_accessability(t_game *game)
 	delete_matrix(&data, *game);
 	if (solvable != game->map.coins_all + 1)
 		ft_error(game, 201);
-}
+} */
