@@ -16,7 +16,7 @@ t_parsed_data	*fake_parser(char *path)
 {
 	(void)path;
 
-	t_parsed_data	*fake = parsed_data_map0();
+	t_parsed_data	*fake = parsed_data_map2();
 	return (fake);
 }
 
@@ -25,6 +25,7 @@ int main(void)
 	int ret;
 	
 	ft_printf("----- Starts validation of parser -----\n");
+	
 	// ret = run_as_validator(/* PLACE FOR PARSER FUNCTION */);
 	ret = run_as_validator(fake_parser);
 	

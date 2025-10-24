@@ -38,10 +38,10 @@ t_parsed_data *parsed_data_map0(void)
 
 	data->floor = init_rgb(220, 100, 0);
 	data->ceiling  = init_rgb(225, 30, 0);
-	data->north_texture_path = "./textures/wn";
-	data->south_texture_path = "./textures/ws";
-	data->west_texture_path = "./textures/ww";
-	data->east_texture_path = "./textures/we";
+	data->north_texture_path = "./textures/wn0";
+	data->south_texture_path = "./textures/ws0";
+	data->west_texture_path = "./textures/ww0";
+	data->east_texture_path = "./textures/we0";
 	data->map_grid = grid;
 
 	return data;
@@ -67,10 +67,10 @@ t_parsed_data *parsed_data_map1(void)
 
 	data->floor = init_rgb(220, 100, 0);
 	data->ceiling  = init_rgb(225, 30, 0);
-	data->north_texture_path = "./textures/wn";
-	data->south_texture_path = "./textures/ws";
-	data->west_texture_path = "./textures/ww";
-	data->east_texture_path = "./textures/we";
+	data->north_texture_path = "./textures/wn1";
+	data->south_texture_path = "./textures/ws1";
+	data->west_texture_path = "./textures/ww1";
+	data->east_texture_path = "./textures/we1";
 	data->map_grid = grid;
 
 	return data;
@@ -104,10 +104,10 @@ t_parsed_data *parsed_data_map2(void)
 	
 	data->floor = init_rgb(220, 100, 0);
 	data->ceiling  = init_rgb(225, 30, 0);
-	data->north_texture_path = "./textures/wn";
-	data->south_texture_path = "./textures/ws";
-	data->west_texture_path = "./textures/ww";
-	data->east_texture_path = "./textures/we";
+	data->north_texture_path = "./textures/wn2";
+	data->south_texture_path = "./textures/ws2";
+	data->west_texture_path = "./textures/ww2";
+	data->east_texture_path = "./textures/we2";
 	data->map_grid = grid;
 
 	return data;

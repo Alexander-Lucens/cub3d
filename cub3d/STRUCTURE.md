@@ -4,6 +4,8 @@ cub3d/
 ├── Makefile
 │
 ├── includes/
+│	├── colors.h
+│	├── defines.h
 │   └── cub3d.h
 │
 ├── libft/
@@ -12,24 +14,40 @@ cub3d/
 │
 ├── textures/
 │
-└── src/
-    ├── main.c					# Finel root file
+└── src/						# Finel root file
     │
-    ├── parser/
-    │   ├── parser.c            # Core file of parser
-    │   ├── validate_map.c      # Map validation and throw error on issue
-    │   ├── parse_elements.c	# Add graphics element to struct
-    │   └── parser_utils.c		# Just utils
+    ├── core/
+    │   ├── main.c				# Root execution point of programm    	
+	│   └── cleenup.c			# Cleen after finish execution
     │
-    └── renderer/
-	│       ├── renderer.c      	# Initialise MLX, start game loop
-	│       ├── hooks.c         	# Key pres hooks
-	│       ├── raycasting.c    	
-	│       └── draw.c          	# Draw textures (walls, floor, ceiling)
+	├──graphic/					# Initialise MLX, load images ind initialise collors for F&C
+	│   ├── 1.c      	    	
+	│   └── 2.c 
+	│
+    ├── input/
+	│   ├── key_press.c			# Listner on key press    	
+	│   └── Move_player.c		# move player/update game data
+	│
+	├── parser/					# Parser as input get string with path to map.cub
+	│   ├── 1.c      	    	
+	│   └── parser.c
+	│
+	├──render/					# Part with calculation of raus and display
+	│   ├── renderer.c
+	│   ├── draw_minimap.c   	   	
+	│   └── draw_game.c
 	│
 	└── tests/
-		├── test_main.c				# Pre difine structures and "main" to run render separately from parser
-		├── test_cases.c			# This things try to run parser and compare it output with mok data
-		├──	moks_data.c				# Pre made date for 3 maps which will be in /maps folder
-		└──	test_parser.c			# Runs all test cases and make validation is parser past test or not
+		├── tests.h
+		├── parsed_data
+		│	├── init.c
+		│	├── main.c 
+	    │   ├── maps.c
+		│	├── tests.c
+		│	├── utils.c   	
+	    │   └── validator.c
+		│
+		├── ToDo:		# Iest to check is validation success and all data aranged correct	
+		├──	ToDo:		# Other features to run it separately
+		└──	Feature:	# Maybe need to change it from allocate to initialise on stack (without pointer)
 ```

@@ -1,7 +1,7 @@
-NO ./textures/wn
-SO ./textures/ws
-WE ./textures/ww
-EA ./textures/we
+NO ./textures/wn2
+SO ./textures/ws2
+WE ./textures/ww2
+EA ./textures/we2
 
 F 220,100,0
 C 225,30,0
