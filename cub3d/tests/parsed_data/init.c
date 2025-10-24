@@ -1,15 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_parser.c                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 16:48:36 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 02:35:53 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mockdata.h"
+#include "../tests.h"
 
-
+/**
+ * @brief Get origin data and data for comparison and pack it in one structure
+ * 
+ * @param origin 
+ * @param expect 
+ * @return t_test_data* 
+ */
+t_test_data *init_test_struct(t_parsed_data *origin, t_parsed_data *expect, int width, int height)
+{
+	t_test_data *data;
+	
+	data = ft_calloc(1 sizeof(t_test_data));
+	if (!data)
+    {
+        PRINT_FAIL("Memory allocation failed for test struct.");
+        return (NULL);
+    }
+	data->expect = expect;
+	data->origin = origin;
+	data->height = height;
+	data->width = width;
+	return data;
+}

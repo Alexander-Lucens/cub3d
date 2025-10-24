@@ -6,73 +6,81 @@
 #    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/10/21 16:48:36 by akuzmin          ###   ########.fr        #
+#    Updated: 2025/10/24 02:35:34 by akuzmin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= parser_tests
+NAME		:=	parser_tests
 
 # **************************************************************************** #
 
-CC			:= cc
-
-CFLAGS		:= -Wall -Wextra -Werror -g
-
-# **************************************************************************** #
-
-INC_DIR		:= ../includes
-
-LIBFT_DIR	:= ../Libft
-
-OBJDIR		:= obj/
-
-LIBFLAGS	:= -L$(LIBFT_DIR) -l:libft.a
+SRC_DIR		:=	../src/
+TEST_DIR	:=	.
+OBJ_DIR		:=	obj/
+INC_DIR		:=	../includes/
+LIBFT_DIR	:=	../Libft/
 
 # **************************************************************************** #
 
-SRCS_PARSER	:= ../src/parser/check_map_extension.c \
-			   ../src/parser/map_str_to_matrix.c \
-			   ../src/parser/check_border.c \
-			   ../src/parser/check_accessability.c \
-			   ../src/parser/dfs.c \
-			   ../src/parser/clean_matrix.c \
-			   ../src/parser/init_data.c \
-			   ../src/parser/fill_coins_position.c
+SUB_DIRS	:=	parser/ parsed_data/
+SRCS_PARSER	:=	$(foreach dir,$(SUB_DIRS),$(wildcard $(SRC_DIR)$(dir)*.c))
+SRCS_TESTS	:=	$(wildcard $(TEST_DIR)/*.c)
 
-SRCS_TESTS	:= moks_data.c test_cases.c test_parser.c test_main.c
-
-SRCS		:= $(SRCS_PARSER) $(SRCS_TESTS)
+SRCS		:=	$(SRCS_PARSER) $(SRCS_TESTS)
+BASENAMES	:=	$(notdir $(SRCS))
+OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(BASENAMES))
 
 # **************************************************************************** #
 
-BASENAMES	:= $(notdir $(SRCS))
-
-OBJS := $(patsubst %.c,$(OBJDIR)/%.o,$(BASENAMES))
+LIBFT_NAME	:=	libft.a
+LIBFT		:=	$(LIBFT_DIR)/$(LIBFT_NAME)
 
 # **************************************************************************** #
 
-.PHONY: all clean run
+CC			:=	cc
+CFLAGS		:=	-Wall -Wextra -Werror -g
+CPPFLAGS	:=	-I$(INC_DIR) -I$(LIBFT_DIR)/include
+LIBFLAGS	:=	-L$(LIBFT_DIR) -l:$(LIBFT_NAME)
+
+RM			:=	rm -rf
+
+# **************************************************************************** #
+
+vpath %.c $(SRC_DIR) $(patsubst %,$(SRC_DIR)%,$(SUB_DIRS)) $(TEST_DIR)
+
+# **************************************************************************** #
 
 all: $(NAME)
 
-$(NAME): | $(OBJDIR)
-	@$(MAKE) -C $(LIBFT_DIR)
-	@echo "Compiling parser sources and tests..."
-	@for src in $(SRCS); do \
-	  obj=$(OBJDIR)/$$(basename $$src .c).o; \
-	  echo "  -> $$src"; \
-	  $(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR)/include -c $$src -o $$obj || exit 1; \
-	done
-	@echo "Linking $(NAME)..."
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFLAGS) -o $(NAME)
-	@echo "Built $(NAME)."
+$(NAME): $(LIBFT) $(OBJ_DIR) $(OBJS)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LIBFLAGS) -o $(NAME)
+	@echo "\033[1;32m[OK]\033[0m Built $(NAME) successfully."
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)"
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@echo "Creating $(OBJ_DIR) directory."
+
+$(OBJ_DIR)%.o: %.c
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@echo "Compiling $@."
+
+run: all
+	@echo "\033[1;34mRunning $(NAME)...\033[0m"
+	@./$(NAME)
 
 clean:
-	@rm -rf $(OBJDIR) $(NAME)
-	@echo "Cleaned tests build."
+	@$(RM) $(OBJ_DIR)
+	@echo "Deleting object files for $(NAME)."
+	@$(MAKE) -C $(LIBFT_DIR) clean
 
-run: $(NAME)
-	@./$(NAME)
+fclean: clean
+	@$(RM) $(NAME)
+	@echo "Deleting executable $(NAME)."
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+
+re: fclean all
+
+.PHONY: all clean fclean re run
