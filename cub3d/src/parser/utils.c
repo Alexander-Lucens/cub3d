@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_extension.c                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 07:54:09 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 18:16:39 by lkramer          ###   ########.fr       */
+/*   Created: 2025/10/21 19:17:45 by lkramer           #+#    #+#             */
+/*   Updated: 2025/10/21 19:21:42 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	check_map_extension(char *map, t_game *game)
+/**
+ * @brief Checker for white spaces and end of string
+ * 
+ * @return int * 
+ */
+int	check_white_spaces_end_of_str(char **lines, int *i)
 {
-	int	i;
-
-	i = ft_strlen(map);
-	if (i >= 4 && ft_strncmp(map + i - 4, ".cub", 4) != 0)
-		ft_error(game, 1);
+	if (lines[*i][0] == '\0' || lines[*i] == ' ' 
+		|| lines[*i] == '\t' || lines[*i] == '\n')
+	{
+		(*i)++;
+		return (1);
+	}
+	return (0);
 }
