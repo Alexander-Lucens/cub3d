@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
+/*   Updated: 2025/10/24 07:15:25 by akuzmin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
@@ -56,7 +68,20 @@
 
 /* **************************************************************************** */
 
-// COLOR
+/**
+ * @brief enum for easiest way to convert values.
+ * 
+ */
+typedef enum e_cell
+{
+	CELL_VOID   = -1,  // ' ' - пустота (вне карты)
+	CELL_FLOOR  = 0,   // '0' - пол, можно идти
+	CELL_WALL   = 1,   // '1' - стена, нельзя пройти
+	CELL_NORTH  = 2,   // 'N' - игрок смотрит на север
+	CELL_SOUTH  = 3,   // 'S' - игрок смотрит на юг
+	CELL_EAST   = 4,   // 'E' - игрок смотрит на восток
+	CELL_WEST   = 5    // 'W' - игрок смотрит на запад
+}	t_cell;
 
 /* **************************************************************************** */
 
@@ -100,11 +125,11 @@ typedef struct s_graphics
 
 /**
  * @brief Hold inside Grid of map and maximal height and width.
- * 
+ * [' ', '0', '1', 'N', 'S', 'E', 'W'] --> [-1, 0, 1, 2, 3, 4, 5]
  */
 typedef struct s_map
 {
-	char	**grid;
+	int		**matrix;
 	int		map_width;
 	int		map_height;
 }	t_map;
@@ -128,7 +153,8 @@ typedef struct s_controls
  * @brief Consist basic data about player as:
  * 1. Position;
  * 2. Direction;
- * 3. And keys wich were presed to move player(change position and direction)
+ * controls - And keys wich were presed to move player(change position and direction);
+ * delay - duration of delay from key press to action
  */
 typedef struct s_player
 {
@@ -139,6 +165,28 @@ typedef struct s_player
 }	t_player;
 /* **************************************************************************** */
 
+typedef struct s_rgb
+{
+	int		r;
+	int		g;
+	int		b;
+}	t_rgb;
+
+/**
+ * @brief 
+ */
+typedef struct s_parsed_data
+{
+	t_rgb	*floor;	
+	t_rgb	*ceiling;
+	char	*north_texture_path;
+	char	*south_texture_path;
+	char	*east_texture_path;
+	char	*west_texture_path;
+	char	**map_grid;
+}	t_parsed_data;
+/* **************************************************************************** */
+
 /**
  * @brief Main STRUCTURE
  * Here we storing all date about the game.
@@ -146,9 +194,10 @@ typedef struct s_player
  */
 typedef struct s_game
 {
-	t_graphics	graphics;
-	t_map		map;
-	t_player	player;
+	t_parsed_data	data;
+	t_graphics		graphics;
+	t_map			map;
+	t_player		player;
 }	t_game;
 /* **************************************************************************** */
 

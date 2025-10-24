@@ -5,8 +5,9 @@
 
 #Ignore .o
 *.o
-/cub3d/*objs
-/cub3d/*/*.o
+objs/
+
+.vscode
 
 *.a
 so_long

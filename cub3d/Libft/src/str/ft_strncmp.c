@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:39:31 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 11:37:07 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/24 00:41:00 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,4 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (-1);
 	return (out);
 }
-/*
-#include <stdio.h>
-#include <string.h>
 
-int	main(void)
-{
-	printf("%d\n", ft_strncmp("test\200", "test\0", 6));
-	printf("%d\n\n", strncmp("test\200", "test\0", 6));
-	printf("%d\n", ft_strncmp("test\200", "test\200", 6));
-	printf("%d\n\n", strncmp("test\200", "test\200", 6));
-	printf("%d\n", ft_strncmp("test\0", "test\200", 6));
-	printf("%d\n\n", strncmp("test\0", "test\200", 6));
-	printf("%d\n", ft_strncmp("test\0", "test\0", 6));
-	printf("%d\n\n", strncmp("test\0", "test\0", 6));
-	printf("%d\n", ft_strncmp("abcdef", "abc\375xx", 5));
-	printf("%d\n\n", strncmp("abcdef", "abc\375xx", 5));
-	return (0);
-}
-*/
