@@ -6,7 +6,7 @@
 #    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#              #
-#    Updated: 2025/10/21 02:30:46 by akuzmin          ###   ########.fr        #
+#    Updated: 2025/10/24 06:37:17 by akuzmin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS		:=	ft_isalpha.c ft_isdigit.c \
 				ft_memmove.c ft_memset.c \
 				ft_atoi.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_itoa.c ft_split.c \
 				ft_printf.c \
-				ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
+				ft_strcmp.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
 				ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
 				ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 

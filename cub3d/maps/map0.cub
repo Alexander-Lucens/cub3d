@@ -1,13 +1,9 @@
-NO ./textures/wall
-
-SO ./textures/wall
-
-WE ./textures/wall
-
-EA ./textures/wall
+NO ./textures/wn0
+SO ./textures/ws0
+WE ./textures/ww0
+EA ./textures/we0
 
 F 220,100,0
-
 C 225,30,0
 
 111111111111111

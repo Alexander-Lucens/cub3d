@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 04:59:53 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 07:15:39 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* **************************************************************************** */
 
 # include "defines.h"
+# include "colors.h"
 
 /* **************************************************************************** */
 
@@ -25,7 +26,7 @@ t_pos	init_tpos(int x, int y);
 char	*get_next_line(int fd);
 
 
-int		main(int ac, char **av);
+// int		main(int ac, char **av);
 
 // Logic
 int		close_game(void *param);
