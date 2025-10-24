@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 04:47:03 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 04:50:16 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(void)
 	
 	ft_printf("----- Starts validation of parser -----\n");
 	// ret = run_as_validator(/* PLACE FOR PARSER FUNCTION */);
-	ret = run_as_validator(/* PLACE FOR PARSER FUNCTION */);
+	ret = run_as_validator(fake_parser);
 	
 	ft_printf("\n------- END OF VALIDATION -------\n");
 	return (ret);	
