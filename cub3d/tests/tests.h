@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 07:07:23 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 21:15:38 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ t_parsed_data	*parsed_data_map2(void);
 int				parser_test_map0(t_parsed_data *origin);
 int				parser_test_map1(t_parsed_data *origin);
 int				parser_test_map2(t_parsed_data *origin);
+
+int				test_parse_texture_path();
+int				test_parse_color();
+int				test_parse_cub_file();
+
+
 /* **************************************************************************** */
 
 /* validator.c **************************************************************** */

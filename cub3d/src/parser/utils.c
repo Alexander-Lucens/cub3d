@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:17:45 by lkramer           #+#    #+#             */
-/*   Updated: 2025/10/21 19:21:42 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/24 19:40:52 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,37 @@
  */
 int	check_white_spaces_end_of_str(char **lines, int *i)
 {
-	if (lines[*i][0] == '\0' || lines[*i] == ' ' 
-		|| lines[*i] == '\t' || lines[*i] == '\n')
-	{
-		(*i)++;
-		return (1);
-	}
-	return (0);
+	int	j;
+
+	if (lines[*i][0] == '\0')
+    {
+        (*i)++;
+        return (1);
+    }
+    j = 0;
+    while (lines[*i][j])
+    {
+        if (lines[*i][j] != ' ' && lines[*i][j] != '\t' 
+			&& lines[*i][j] != '\n')
+            return (0);
+        j++;
+    }
+    (*i)++;
+    return (1);
+}
+
+
+void	free_split(char **split)
+{
+    int	i;
+
+    if (!split)
+        return;
+    i = 0;
+    while (split[i])
+    {
+        free(split[i]);
+        i++;
+    }
+    free(split);
 }

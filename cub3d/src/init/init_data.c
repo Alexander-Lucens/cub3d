@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 19:07:03 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/24 19:41:10 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@
 // 	{
 // 		if (game->map.map[i] == '\n')
 // 			row++;
-// 		if (game->map.map[i] != '\n' && \
+// 		if (game->map.map[i] != '\n' && 
 // 			(game->map.cols) * (row) + (row - 1) == i)
 // 			ft_error(game, 102);
 // 	}
 // }
 
 
-/**
+/** 
  * @brief Read file from given fd and allocated and assigned data as a string.
  * All \n and EOF is saved.
  * 
@@ -42,7 +42,7 @@
  * @param fd 
  * @return char* 
  */
-static char	*read_file(int fd)
+char	*read_file(int fd)
 {
 	char	*out;
 	char	*temp;
@@ -72,10 +72,9 @@ int	init_data(t_game *game, char *map_address)
 {
 	if (!parse_cub_file(game, map_address))
 		return (-1);
-	if (!validate_game_data(game))
+	if (!validate_all_data(game))
         return (-1);
-	if (!init_graphics(game))
-        return (-1);
-	display_game(game);
+	/* 	if (!init_graphics(game))
+        return (-1); */
 	return (0);
 }

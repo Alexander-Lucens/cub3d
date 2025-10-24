@@ -14,16 +14,16 @@ cub3d/
 │
 ├── textures/
 │
-└── src/						# Finel root file
+└── src/						# Final root file
     │
     ├── core/
     │   ├── main.c				# Root execution point of programm    	
 	│   └── cleenup.c			# Cleen after finish execution
     │
-	├──graphic/					# Initialise MLX, load images ind initialise collors for F&C
-	│   ├── 1.c      	    	
-	│   └── 2.c 
-	│
+	├──init/					# Initialisation of data
+	│   ├── init_data.c	      	    	
+	│   └── init_graphics.c		# Initialise MLX, load images ind initialise collors for F&C
+	|
     ├── input/
 	│   ├── key_press.c			# Listner on key press    	
 	│   └── Move_player.c		# move player/update game data

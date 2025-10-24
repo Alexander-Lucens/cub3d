@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 07:15:25 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 17:33:24 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,9 @@ typedef struct s_rgb
 }	t_rgb;
 
 /**
- * @brief 
+ * @brief RENDER INPUT
+ * Render expect this structure
+ * from parser 
  */
 typedef struct s_parsed_data
 {
@@ -183,7 +185,7 @@ typedef struct s_parsed_data
 	char	*south_texture_path;
 	char	*east_texture_path;
 	char	*west_texture_path;
-	char	**map_grid;
+	char	**map_grid; // set of the strings 
 }	t_parsed_data;
 /* **************************************************************************** */
 

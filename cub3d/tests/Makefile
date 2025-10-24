@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
+#    By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/10/24 06:34:28 by akuzmin          ###   ########.fr        #
+#    Updated: 2025/10/24 19:45:52 by lkramer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,11 @@ INC_DIR		:=	includes/
 
 # **************************************************************************** #
 
-SRCS		:=	init.c  main.c  maps.c  tests.c  utils.c  validator.c
+SRCS		:=	init.c  main.c  maps.c  tests.c  utils.c  validator.c \
+				../../src/parser/parser.c \
+            	../../src/parser/check_map_extension.c \
+			  	../../src/init/init_data.c \
+				../../src/parser/utils.c \
 
 OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 
@@ -52,7 +56,7 @@ RM			:=	rm -rf
 
 # * VPATH ******************************************************************* #
 
-vpath %.c $(SRC_DIR) $(patsubst %, $(SRC_DIR)%, $(SUB_DIR))
+vpath %.c $(SRC_DIR) $(patsubst %, $(SRC_DIR)%, $(SUB_DIR)) ../../src/parser/
 
 # **************************************************************************** #
 
