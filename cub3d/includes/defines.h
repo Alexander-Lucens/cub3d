@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 04:38:13 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 05:24:19 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,13 +165,20 @@ typedef struct s_player
 }	t_player;
 /* **************************************************************************** */
 
+typedef struct s_rgb
+{
+	int		r;
+	int		g;
+	int		b;
+}	t_rgb;
+
 /**
  * @brief 
  */
 typedef struct s_parsed_data
 {
-	int		floor[3];	
-	int		ceiling[3];
+	t_rgb	*floor;	
+	t_rgb	*ceiling;
 	char	*north_texture_path;
 	char	*south_texture_path;
 	char	*east_texture_path;

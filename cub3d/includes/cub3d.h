@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 04:38:33 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 05:07:37 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_pos	init_tpos(int x, int y);
 char	*get_next_line(int fd);
 
 
-int		main(int ac, char **av);
+// int		main(int ac, char **av);
 
 // Logic
 int		close_game(void *param);

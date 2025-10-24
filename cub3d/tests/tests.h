@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 02:09:28 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 07:07:23 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@
 
 /* MAP SIZING DEFINES ******************************************************** */
 
-# define MAP_0_WIDTH 16 // 15 - if we dont count \0
-# define MAP_0_HEIGHT 13 // 12 - if we dont count NULL determination
+# define MAP_0_WIDTH 15 // 15 - if we dont count \0
+# define MAP_0_HEIGHT 12 // 12 - if we dont count NULL determination
 
-# define MAP_1_WIDTH 12 // 11 - if we dont count \0
-# define MAP_1_HEIGHT 7 // 6 - if we dont count NULL determination
+# define MAP_1_WIDTH 11 // 11 - if we dont count \0
+# define MAP_1_HEIGHT 6 // 6 - if we dont count NULL determination
 
-# define MAP_2_WIDTH 34 // 33 - if we dont count \0
-# define MAP_2_HEIGHT 15 // 14 - if we dont count NULL determination
+# define MAP_2_WIDTH 33 // 33 - if we dont count \0
+# define MAP_2_HEIGHT 14 // 14 - if we dont count NULL determination
 
 /* ERROR/SUCCESS OUTPUT TEMPLATE ********************************************** */
 
 # define PRINT_FAIL(msg) \
-	ft_printf(BOLD BG_RED WHITE " FAIL " RESET " " RED "%s\n" RESET, msg)
+	ft_printf("%s%s FAIL %s%s %s %s\n", BG_RED, WHITE, RESET, RED, msg, RESET)
 
 # define PRINT_SUCCESS(msg) \
-	ft_printf(BOLD BG_GREEN BLACK " SUCCESS " RESET " " GREEN "%s\n" RESET, msg)
+	ft_printf("%s%s SUCCESS %s%s %s %s\n", BG_GREEN, BLACK, RESET, GREEN, msg, RESET)
 /* **************************************************************************** */
 
 /* Specific test data struct ************************************************** */
@@ -47,6 +47,7 @@ typedef struct s_test_data
 
 /* parsed_data_init.c ********************************************************* */
 
+t_rgb			*init_rgb(int r, int g, int b);
 t_test_data		*init_test_struct(t_parsed_data *origin, t_parsed_data *expect, \
 	int width, int height);
 /* **************************************************************************** */
@@ -75,5 +76,9 @@ int				parser_test_map1(t_parsed_data *origin);
 int				parser_test_map2(t_parsed_data *origin);
 /* **************************************************************************** */
 
+/* validator.c **************************************************************** */
+
+int		run_as_validator(t_parsed_data *(*func)(char *));
+/* **************************************************************************** */
 
 #endif

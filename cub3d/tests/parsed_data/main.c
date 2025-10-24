@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_extension.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 07:54:09 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 05:05:41 by akuzmin          ###   ########.fr       */
+/*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
+/*   Updated: 2025/10/24 05:55:37 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../tests.h"
 
-void	check_map_extension(char *map, t_game *game)
+t_parsed_data	*fake_parser(char *path)
 {
-	int	i;
+	(void)path;
 
-	i = ft_strlen(map);
-	if (i >= 4 && ft_strncmp(map + i - 4, ".ber", 4) != 0)
-		ft_error(game, 1);
+	t_parsed_data	*fake = parsed_data_map0();
+	return (fake);
+}
+
+int main(void)
+{
+	int ret;
+	
+	ft_printf("----- Starts validation of parser -----\n");
+	// ret = run_as_validator(/* PLACE FOR PARSER FUNCTION */);
+	ret = run_as_validator(fake_parser);
+	
+	ft_printf("\n------- END OF VALIDATION -------\n");
+	return (ret);	
 }

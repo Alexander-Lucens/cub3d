@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 02:36:02 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 07:08:33 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,38 @@ int validate_data_initialisation(t_test_data *data)
         return (PRINT_FAIL("Ceiling color data is not exits"), 1);
 	if (!data->expect->floor || !data->origin->floor)
         return (PRINT_FAIL("Floor color data is not exits"), 1);
-	return (0);
+	return (PRINT_SUCCESS("Data initialisation test is passed."), 0);
 }
 
 int	validate_colors(t_test_data *data)
 {
-	int i;
-
-	i = 0;
-	while (i < 3)
-	{
-		if (data->expect->ceiling[i] != data->origin->ceiling[i])
-			return (PRINT_FAIL("Ceiling color validation failed."), 1);
-		if (data->expect->floor[i] != data->origin->floor[i])
-			return (PRINT_FAIL("Floor color validation failed."), 1);
-		i++;
-	}
-	return (PRINT_SUCCESS("Color validation test is passed."), 0);
+    int ret = 0;
+    
+    if (data->expect->ceiling->r != data->origin->ceiling->r) {
+        PRINT_FAIL("Ceiling color<RED> validation failed.");
+        ret++;
+    }
+    if (data->expect->ceiling->g != data->origin->ceiling->g) {
+        PRINT_FAIL("Ceiling color<GREEN> validation failed.");
+        ret++;
+    }
+    if (data->expect->ceiling->b != data->origin->ceiling->b) {
+        PRINT_FAIL("Ceiling color<BLUE> validation failed.");
+        ret++;
+    }
+    if (data->expect->floor->r != data->origin->floor->r) {
+        PRINT_FAIL("Floor color<RED> validation failed.");
+        ret++;
+    }
+    if (data->expect->floor->g != data->origin->floor->g) {
+        PRINT_FAIL("Floor color<GREEN> validation failed.");
+        ret++;
+    }
+    if (data->expect->floor->b != data->origin->floor->b) {
+        PRINT_FAIL("Floor color<BLUE> validation failed.");
+        ret++;
+    }
+	return (PRINT_SUCCESS("Color validation test is passed."), ret);
 }
 
 int	validate_textures_path(t_test_data *data)
@@ -68,28 +83,13 @@ int	validate_textures_path(t_test_data *data)
 int validate_map_grid(t_test_data *data)
 {
     int i;
-    char *line;
-    char *num;
-    char *tmp;
 
-    i = 0;
-    line = NULL;
-    while (i < data->height)
+    i = -1;
+    while (++i < data->height)
     {
         if (ft_strcmp(data->expect->map_grid[i], data->origin->map_grid[i]))
-        {
-            num = ft_itoa(i);
-            tmp = ft_strjoin("Data map grid error on line ", num);
-            free(num);
-            PRINT_FAIL(tmp);
-            if (!line)
-                line = ft_strdup(tmp);
-            free(tmp);
-        }
-        i++;
+            return (PRINT_FAIL("Map grid validation test failed."), 1);
     }
-    if (line)
-        return (free(line), PRINT_FAIL("Map grid validation failed."), 1);
     return (PRINT_SUCCESS("Map grid validation test is passed."), 0);
 }
 
@@ -104,18 +104,14 @@ int	parser_test_map(t_test_data *data)
 {
     int ret;
 
-    if (!data)
+    if (!data) {
         return (PRINT_FAIL("No test data provided"), 1);
+    }
     ret = validate_data_initialisation(data);
-    if (ret)
+    if (ret) {
         return (PRINT_FAIL("Parser test failed."), 1);
-    ret = validate_colors(data);
-    if (ret)
-        return (PRINT_FAIL("Parser test failed."), 1);
-    ret = validate_textures_path(data);
-    if (ret)
-        return (PRINT_FAIL("Parser test failed."), 1);
-    ret = validate_map_grid(data);
+    }
+    ret = validate_colors(data) + validate_textures_path(data) + validate_map_grid(data);
     if (ret)
         return (PRINT_FAIL("Parser test failed."), 1);
     return (PRINT_SUCCESS("Parser test passed."), 0);

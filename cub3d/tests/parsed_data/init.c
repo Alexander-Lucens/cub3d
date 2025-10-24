@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 02:35:53 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/10/24 05:26:13 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_test_data *init_test_struct(t_parsed_data *origin, t_parsed_data *expect, int 
 {
 	t_test_data *data;
 	
-	data = ft_calloc(1 sizeof(t_test_data));
+	data = ft_calloc(1, sizeof(t_test_data));
 	if (!data)
     {
         PRINT_FAIL("Memory allocation failed for test struct.");
@@ -34,4 +34,18 @@ t_test_data *init_test_struct(t_parsed_data *origin, t_parsed_data *expect, int 
 	data->height = height;
 	data->width = width;
 	return data;
+}
+
+
+t_rgb	*init_rgb(int r, int g, int b)
+{
+	t_rgb *color;
+
+	color = ft_calloc(1, sizeof(t_rgb));
+	if (!color)
+		return (NULL);
+	color->r = r;
+	color->g = g;
+	color->b = b;
+	return (color);
 }

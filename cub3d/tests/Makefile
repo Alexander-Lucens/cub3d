@@ -6,55 +6,63 @@
 #    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/10/24 02:35:34 by akuzmin          ###   ########.fr        #
+#    Updated: 2025/10/24 06:34:28 by akuzmin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:=	parser_tests
+NAME        := parser_tests
 
 # **************************************************************************** #
 
-SRC_DIR		:=	../src/
-TEST_DIR	:=	.
-OBJ_DIR		:=	obj/
-INC_DIR		:=	../includes/
-LIBFT_DIR	:=	../Libft/
+SRC_DIR		:=	./
+
+SUB_DIR		:=	parsed_data/
+
+OBJ_DIR		:=	objs/
+
+INC_DIR		:=	includes/
 
 # **************************************************************************** #
 
-SUB_DIRS	:=	parser/ parsed_data/
-SRCS_PARSER	:=	$(foreach dir,$(SUB_DIRS),$(wildcard $(SRC_DIR)$(dir)*.c))
-SRCS_TESTS	:=	$(wildcard $(TEST_DIR)/*.c)
+SRCS		:=	init.c  main.c  maps.c  tests.c  utils.c  validator.c
 
-SRCS		:=	$(SRCS_PARSER) $(SRCS_TESTS)
-BASENAMES	:=	$(notdir $(SRCS))
-OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(BASENAMES))
+OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 
 # **************************************************************************** #
 
 LIBFT_NAME	:=	libft.a
+
+LIBFT_DIR	:=	../Libft
+
 LIBFT		:=	$(LIBFT_DIR)/$(LIBFT_NAME)
 
 # **************************************************************************** #
 
 CC			:=	cc
-CFLAGS		:=	-Wall -Wextra -Werror -g
+
+CFLAGS		:=	-Wall -Wextra -Werror
+
+g: CFLAGS	+=	-g
+
 CPPFLAGS	:=	-I$(INC_DIR) -I$(LIBFT_DIR)/include
-LIBFLAGS	:=	-L$(LIBFT_DIR) -l:$(LIBFT_NAME)
+
+LIBFLAGS	:=	-L$(LIBFT_DIR) -l:$(LIBFT_NAME) -L/usr/lib/X11 -lXext -lX11 -lmlx
 
 RM			:=	rm -rf
 
-# **************************************************************************** #
+# * VPATH ******************************************************************* #
 
-vpath %.c $(SRC_DIR) $(patsubst %,$(SRC_DIR)%,$(SUB_DIRS)) $(TEST_DIR)
+vpath %.c $(SRC_DIR) $(patsubst %, $(SRC_DIR)%, $(SUB_DIR))
 
 # **************************************************************************** #
 
 all: $(NAME)
 
+g: fclean $(NAME)
+
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LIBFLAGS) -o $(NAME)
-	@echo "\033[1;32m[OK]\033[0m Built $(NAME) successfully."
+	@echo "Creating program $(NAME)."
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)"
@@ -67,20 +75,16 @@ $(OBJ_DIR)%.o: %.c
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo "Compiling $@."
 
-run: all
-	@echo "\033[1;34mRunning $(NAME)...\033[0m"
-	@./$(NAME)
+re: fclean all
 
 clean:
 	@$(RM) $(OBJ_DIR)
-	@echo "Deleting object files for $(NAME)."
+	@echo "Deleting object files for program $(NAME)."
 	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "Deleting executable $(NAME)."
+	@echo "Deleting program $(NAME)."
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
-re: fclean all
-
-.PHONY: all clean fclean re run
+.PHONY: all re clean fclean g
