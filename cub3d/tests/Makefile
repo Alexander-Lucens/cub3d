@@ -6,7 +6,7 @@
 #    By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/10/24 19:45:52 by lkramer          ###   ########.fr        #
+#    Updated: 2025/10/30 21:18:19 by lkramer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,13 @@ INC_DIR		:=	includes/
 
 SRCS		:=	init.c  main.c  maps.c  tests.c  utils.c  validator.c \
 				../../src/parser/parser.c \
-            	../../src/parser/check_map_extension.c \
 			  	../../src/init/init_data.c \
 				../../src/parser/utils.c \
+				../../src/parser/check_map_grid.c \
+				../../src/parser/check_border.c \
+				../../src/parser/check_map.c \
+				../../src/parser/check_textures.c \
+				../../src/parser/dfs.c \
 
 OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 

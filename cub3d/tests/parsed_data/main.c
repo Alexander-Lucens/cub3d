@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 21:44:09 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/31 16:15:29 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ int main(void)
     ret = run_as_validator(test_parser_wrapper);   */
 
 	ft_printf("----- Testing individual parser functions -----\n");
-    test_parse_texture_path();
-    test_parse_color();
-	test_parse_cub_file();
-	
+    test_valid_parse_texture_path();
+	test_invalid_parse_texture_path();
+    test_valid_parse_color();
+	test_invalid_parse_color();
+	test_valid_parse_cub_file();
+	test_valid1_parse_cub_file();
+	test_valid2_parse_cub_file();
+
 	ft_printf("\n------- END OF VALIDATION -------\n");
-	return (ret);	
+	return (ret);
 }
