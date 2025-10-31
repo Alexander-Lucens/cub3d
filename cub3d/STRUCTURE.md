@@ -51,3 +51,13 @@ cub3d/
 		├──	ToDo:		# Other features to run it separately
 		└──	Feature:	# Maybe need to change it from allocate to initialise on stack (without pointer)
 ```
+
+Programm life-cicle:
+1. Starts main.c -> get map_location from argv -> put it to parser
+2. Parser validate and assign in game->data values (check is all files is accessable and save colors) 
+
+```
+! NEED TO LOOK IN SUBJECT OR ASK 42TEAMS IS FILE MUST HAVE ALL FEALDS AND IF IT'S NOT IS IT AN ERROR
+```
+
+3.

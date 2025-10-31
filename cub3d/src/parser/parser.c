@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:22:35 by lkramer           #+#    #+#             */
-/*   Updated: 2025/10/24 21:50:52 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/31 12:20:09 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,16 +146,17 @@ int	parse_color_path(t_game *game, char *color_str, char *color_type)
  * and stores values in parse_data struct
  * @return int * 
  */
-t_rgb	*create_rgb_color(int r, int g, int b)
+t_rgb	create_rgb_color(int r, int g, int b)
 {
-	t_rgb	*color;
+	t_rgb	color;
 
-	color = malloc(sizeof(t_rgb));
-    if (!color)
+    if ((r < 0 || r > 255) ||
+        (g < 0 || g > 255) ||
+        (b < 0 || r > 255))
         return (NULL);
-    color->r = r;
-    color->g = g;
-    color->b = b;
+    color.r = r;
+    color.g = g;
+    color.b = b;
 	return (color);
 }
 
