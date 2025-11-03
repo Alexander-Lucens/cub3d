@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 19:44:57 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/03 09:02:47 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ char	*get_next_line(int fd);
 
 // Logic
 int		close_game(void *param);
+
 void	check_map_extension(char *map);
-void	init_graphics(t_game *game);
+
+int		init_graphics(t_game *game);
 
 
 void	map_str_to_matrix(t_game *game);

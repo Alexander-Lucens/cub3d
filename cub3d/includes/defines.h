@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/31 12:40:22 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/03 09:31:48 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 
 /* **************************************************************************** */
 
-# define	SEGMENT_SIZE 10
+// # define	SEGMENT_SIZE 10
 
-# define	MOVE_DELAY 1000
+# define	MOVE_DELAY 1000 // if allowed time -> use time instead
 
 /* **************************************************************************** */
 
@@ -45,8 +45,8 @@
 
 # define	IMG_SIZE		10
 
-# define	DEF_WIN_HEIGHT	600
-# define	DEF_WIN_WIDTH	1240
+# define	DEF_WIN_HEIGHT	960
+# define	DEF_WIN_WIDTH	1280
 
 /* **************************************************************************** */
 
@@ -223,6 +223,7 @@ typedef struct s_game
 	t_graphics		graphics;
 	t_map			map;
 	t_player		player;
+	int				is_error;
 }	t_game;
 /* **************************************************************************** */
 
