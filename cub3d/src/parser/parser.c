@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:17:01 by lkramer           #+#    #+#             */
-/*   Updated: 2025/10/31 17:51:01 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/03 14:21:38 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ t_game	*parse_cub_file(t_game *game, char *map_address)
 	PRINT_SUCCESS("parse map grid passsed");
 	printf("Map dimensions: %d x %d\n",
 		game->map.map_height, game->map.map_width);
-	return (free(file_data), game);
+	return (/* free(file_data),*/ game);
 }

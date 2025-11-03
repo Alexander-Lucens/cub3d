@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/31 16:15:06 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/03 13:47:06 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int				test_valid2_parse_cub_file(void);
 /* validator.c **************************************************************** */
 
 int		run_as_validator(t_parsed_data *(*func)(char *));
+
+int		run_as_validator_game(t_game *(*func)(t_game *, char *));
 /* **************************************************************************** */
 
 #endif

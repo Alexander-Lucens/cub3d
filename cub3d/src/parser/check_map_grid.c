@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_grid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:57:54 by lkramer           #+#    #+#             */
-/*   Updated: 2025/10/31 17:49:31 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/03 14:23:08 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ int	parse_map_grid(t_game *game, char *content)
 	check_border(game);
 	check_accessibility(game);
 	free_split(lines);
+	game->data.map_grid = map_grid;
 	return (1);
 }
