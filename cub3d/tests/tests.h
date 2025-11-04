@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/03 13:47:06 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 11:24:16 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@
 
 # define MAP_2_WIDTH 33 // 33 - if we dont count \0
 # define MAP_2_HEIGHT 14 // 14 - if we dont count NULL determination
-
-/* ERROR/SUCCESS OUTPUT TEMPLATE ********************************************** */
-
-# define PRINT_FAIL(msg) \
-	ft_printf("%s%s FAIL %s%s %s %s\n", BG_RED, WHITE, RESET, RED, msg, RESET)
-
-# define PRINT_SUCCESS(msg) \
-	ft_printf("%s%s SUCCESS %s%s %s %s\n", BG_GREEN, BLACK, RESET, GREEN, msg, RESET)
-/* **************************************************************************** */
 
 /* Specific test data struct ************************************************** */
 typedef struct s_test_data

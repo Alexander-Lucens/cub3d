@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/31 17:49:00 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/04 11:24:22 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@
 
 /* **************************************************************************** */
 
+/* FAIL/ERROR/SUCCESS OUTPUT TEMPLATE ****************************************** */
+
 # define PRINT_FAIL(msg) \
 	ft_printf("%s%s FAIL %s%s %s %s\n", BG_RED, WHITE, RESET, RED, msg, RESET)
 
+# define PRINT_ERROR(msg) \
+	ft_printf("%s%s ERROR %s%s %s %s\n", BG_RED, WHITE, RESET, RED, msg, RESET)
+
 # define PRINT_SUCCESS(msg) \
 	ft_printf("%s%s SUCCESS %s%s %s %s\n", BG_GREEN, BLACK, RESET, GREEN, msg, RESET)
+/* **************************************************************************** */
 
 	
 t_pos	init_tpos(int x, int y);

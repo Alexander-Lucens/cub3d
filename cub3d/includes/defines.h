@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/03 09:31:48 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 10:48:21 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@
 
 /* **************************************************************************** */
 
-# define	LEFT_ARROW		65361
-# define	RIGHT_ARROW		65363
+
+# define	L_ARROW(key)	((key) == 123 || (key) == 65361)
+# define	R_ARROW(key)	((key) == 124 || (key) == 65363)
+# define	U_ARROW(key)	((key) == 125 || (key) == 65362) // not needed but in case of bonus
+# define	D_ARROW(key)	((key) == 126 || (key) == 65364) // not needed but in case of bonus
 
 # define	KEY_W(key)		((key) == 13 || (key) == 119)
 # define	KEY_S(key)		((key) == 1	 || (key) == 115)
@@ -167,6 +170,8 @@ typedef struct s_controls
 	int		a;
 	int		s;
 	int		d;
+	int		left;
+	int		right;
 }	t_controls;
 /* **************************************************************************** */
 
@@ -202,14 +207,25 @@ typedef struct s_rgb
  */
 typedef struct s_parsed_data
 {
-	t_rgb	floor;	
-	t_rgb	ceiling;
+	t_rgb	*floor;	
+	t_rgb	*ceiling;
 	char	*north_texture_path;
 	char	*south_texture_path;
 	char	*east_texture_path;
 	char	*west_texture_path;
 	char	**map_grid; // set of the strings 
 }	t_parsed_data;
+/* **************************************************************************** */
+
+/**
+ * @brief Lets make error data in one struct
+ * holding state 
+ */
+typedef struct s_error_data
+{
+	int		is_error;
+	char	*messsage;
+} t_error_data;
 /* **************************************************************************** */
 
 /**
@@ -223,7 +239,7 @@ typedef struct s_game
 	t_graphics		graphics;
 	t_map			map;
 	t_player		player;
-	int				is_error;
+	t_error_data	error;
 }	t_game;
 /* **************************************************************************** */
 

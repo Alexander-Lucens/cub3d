@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   tests_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/03 14:56:10 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 11:27:37 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 int validate_data_initialisation(t_test_data *data)
 {
-	if (!data || !data->origin || !data->expect) {
-		return (PRINT_FAIL("Test data is not exits"), 1);
-	}
+	if (!data->origin)
+		return (PRINT_FAIL("Test data ORIGIN is not exits"), 1);
+    else if (!data->expect)
+		return (PRINT_FAIL("Test data EXPECT is not exits"), 1);
+
 	if (!data->expect->north_texture_path || !data->expect->south_texture_path
         || !data->expect->west_texture_path || !data->expect->east_texture_path
         || !data->origin->north_texture_path || !data->origin->south_texture_path
@@ -89,13 +91,9 @@ int validate_map_grid(t_test_data *data)
     {
         if (ft_strcmp(data->expect->map_grid[i], data->origin->map_grid[i]))
         {
-            char *line = ft_itoa(i); 
-            char *str = ft_strjoin("validator: Map grid validation test failed at line ", line);
-            char *origin = ft_strjoin("\n-->", ft_strjoin(data->origin->map_grid[i], "<--\n"));
-            char *expect = ft_strjoin("\n-->", ft_strjoin(data->expect->map_grid[i], "<--\n"));
-            char *out = ft_strjoin(str, ft_strjoin(origin, expect));
-            return (PRINT_FAIL(out), 1);
-
+            char *str = ft_strjoin("validator: Map grid validation test failed at line ", ft_itoa(i));
+            return (PRINT_FAIL(str), ft_printf("Origin: -->%s<--\nExpect: -->%s<--\n", \
+                    data->origin->map_grid[i], data->expect->map_grid[i]), 1);
         }
     }
     return (PRINT_SUCCESS("validator: Map grid validation test is passed."), 0);

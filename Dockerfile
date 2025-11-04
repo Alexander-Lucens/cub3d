@@ -4,6 +4,9 @@ FROM debian:bookworm-slim
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-setuptools \
+    valgrind \
     build-essential \
     libx11-dev \
     libxext-dev \
@@ -13,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     xvfb \
     x11vnc \
     fluxbox \
+    && pip3 install --no-cache-dir --break-system-packages norminette \
     && rm -rf /var/lib/apt/lists/*
 
 # MiniLibX

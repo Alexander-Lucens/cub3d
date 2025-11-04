@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/03 13:45:19 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 11:41:41 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	test_valid_parse_texture_path(void)
 	int		result;
 	
 	ft_printf(" --- Parser test 3 ---\n");
-	result = parse_texture_path(&game, "../textures/wn0.xpm", NORTH_TEXTURE);
+	result = parse_texture_path(&game, "./textures/wn0.xpm", NORTH_TEXTURE);
 	if (result && game.data.north_texture_path)
 		return (PRINT_SUCCESS("North texture parsed successfully."), 0);
 	else
@@ -114,7 +114,7 @@ int	test_valid_parse_cub_file(void)
 	ft_memset(game, 0, sizeof(t_game));
 
 	ft_printf(" --- Parser test 4 ---\n");
-	result = parse_cub_file(game, "../textures/map0.cub");
+	result = parse_cub_file(game, "./textures/test_maps/map0.cub");
 	if (result && game->map.matrix && game->data.north_texture_path)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
@@ -140,7 +140,7 @@ int	test_valid1_parse_cub_file(void)
 	ft_memset(game, 0, sizeof(t_game));
 
 	ft_printf(" --- Parser test 5 ---\n");
-	result = parse_cub_file(game, "../textures/map1.cub");
+	result = parse_cub_file(game, "./textures/test_maps/map1.cub");
 	if (result && game->map.matrix && game->data.north_texture_path)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
@@ -166,7 +166,7 @@ int	test_valid2_parse_cub_file(void)
 	ft_memset(game, 0, sizeof(t_game));
 
 	ft_printf(" --- Parser test 6 ---\n");
-	result = parse_cub_file(game, "../textures/map2.cub");
+	result = parse_cub_file(game, "./textures/test_maps/map2.cub");
 	if (result && game->map.matrix && game->data.north_texture_path)
 	{
 		printf("Player at: (%.1f, %.1f)\n",

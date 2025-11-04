@@ -6,7 +6,7 @@
 #    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/10/24 02:28:18 by akuzmin          ###   ########.fr        #
+#    Updated: 2025/11/04 11:13:20 by akuzmin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		:=	cub3d
 
 SRC_DIR		:=	src/
 
-SUB_DIR		:=	core/ parser/ render/ input/
+SUB_DIR		:=	core/ parser/ render/ input/ init/ ../tests/parsed_data/
 
 OBJ_DIR		:=	objs/
 
@@ -25,12 +25,11 @@ INC_DIR		:=	includes/
 # **************************************************************************** #
 
 SRCS		:=	main.c \
-				ft_error.c s_free.c \
-				check_map_extension.c map_str_to_matrix.c check_border.c \
-				check_accessability.c dfs.c clean_matrix.c init_data.c \
-				fill_coins_position.c \
-				init_graphics.c display_game.c close_game.c \
-				key_press.c move_player.c
+				parser.c init_data.c parser_utils.c \
+				check_map_grid.c check_border.c check_map.c \
+				check_textures.c dfs.c key_press.c move_player.c \
+				tests_init.c  main_test.c  maps.c  \
+				tests.c  tests_utils.c  validator.c
 
 OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 

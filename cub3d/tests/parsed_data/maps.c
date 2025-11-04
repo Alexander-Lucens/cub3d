@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/03 14:56:43 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 11:22:44 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_parsed_data *parsed_data_map0(void)
 
 	data->floor = init_rgb(220, 100, 0);
 	data->ceiling  = init_rgb(225, 30, 0);
-	data->north_texture_path = "../textures/wn0.xpm";
-	data->south_texture_path = "../textures/ws0.xpm";
-	data->west_texture_path = "../textures/ww0.xpm";
-	data->east_texture_path = "../textures/we0.xpm";
+	data->north_texture_path = "./textures/wn0.xpm";
+	data->south_texture_path = "./textures/ws0.xpm";
+	data->west_texture_path = "./textures/ww0.xpm";
+	data->east_texture_path = "./textures/we0.xpm";
 	data->map_grid = grid;
 
 	return data;
@@ -67,10 +67,10 @@ t_parsed_data *parsed_data_map1(void)
 
 	data->floor = init_rgb(220, 100, 0);
 	data->ceiling  = init_rgb(225, 30, 0);
-	data->north_texture_path = "../textures/wn1.xpm";
-	data->south_texture_path = "../textures/ws1.xpm";
-	data->west_texture_path = "../textures/ww1.xpm";
-	data->east_texture_path = "../textures/we1.xpm";
+	data->north_texture_path = "./textures/wn1.xpm";
+	data->south_texture_path = "./textures/ws1.xpm";
+	data->west_texture_path = "./textures/ww1.xpm";
+	data->east_texture_path = "./textures/we1.xpm";
 	data->map_grid = grid;
 
 	return data;
@@ -104,10 +104,10 @@ t_parsed_data *parsed_data_map2(void)
 	
 	data->floor = init_rgb(220, 100, 0);
 	data->ceiling  = init_rgb(225, 30, 0);
-	data->north_texture_path = "../textures/wn0.xpm";
-	data->south_texture_path = "../textures/ws0.xpm";
-	data->west_texture_path = "../textures/ww0.xpm";
-	data->east_texture_path = "../textures/we0.xpm";
+	data->north_texture_path = "./textures/wn0.xpm";
+	data->south_texture_path = "./textures/ws0.xpm";
+	data->west_texture_path = "./textures/ww0.xpm";
+	data->east_texture_path = "./textures/we0.xpm";
 	data->map_grid = grid;
 
 	return data;

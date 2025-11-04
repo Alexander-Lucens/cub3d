@@ -1,7 +1,7 @@
-NO ../textures/wn1
-SO ../textures/ws1
-WE ../textures/ww1
-EA ../textures/we1
+NO ./textures/wn1.xpm
+SO ./textures/ws1.xpm
+WE ./textures/ww1.xpm
+EA ./textures/we1.xpm
 
 F 220,100,0
 C 225,30,0
