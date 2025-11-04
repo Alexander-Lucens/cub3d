@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/31 11:07:40 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 18:46:02 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,31 @@ char	*read_file(int fd)
  * @param map_address 
  * @return int * 
  */
+/**
+ * @brief Initialize player data from map grid
+ * 
+ * @param game Pointer to the main game structure
+ * @param map_grid The map grid containing player position
+ * @param player_char The character representing the player (N/S/E/W)
+ * @param pos_x Player's x position in the map
+ * @param pos_y Player's y position in the map
+ */
+void	init_player_data(t_game *game, char player_char, int pos_x, int pos_y)
+{
+	game->player.position.x = (float)pos_x;
+	game->player.position.y = (float)pos_y;
+	
+	if (player_char == 'N')
+		game->player.direction = init_tpos(0, -1);
+	else if (player_char == 'S')
+		game->player.direction = init_tpos(0, 1);
+	else if (player_char == 'E')
+		game->player.direction = init_tpos(1, 0);
+	else if (player_char == 'W')
+		game->player.direction = init_tpos(-1, 0);
+}
+
+
 int	init_data(t_game *game, char *map_address)
 {
 	if (!parse_cub_file(game, map_address))

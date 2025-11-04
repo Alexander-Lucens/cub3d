@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_free.c                                           :+:      :+:    :+:   */
+/*   cub_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 16:48:37 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 17:16:13 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // 	free(str);
 // }
 
-static void	free_graphic(t_game *game)
+/* static void	free_graphic(t_game *game)
 {
 	if (game->graphics.player_right)
 		mlx_destroy_image(game->graphics.mlx, game->graphics.player_right);
@@ -46,30 +46,84 @@ static void	free_graphic(t_game *game)
 	game->graphics.background = NULL;
 	game->graphics.border = NULL;
 }
+*/
 
-void	s_free(t_game *game)
+void	free_split(char **split)
 {
 	int	i;
 
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+/**
+ * @brief Free the integer matrix allocated for the game map
+ * 
+ * @param matrix The matrix to free
+ * @param height Number of rows in the matrix
+ */
+void	free_matrix(int **matrix, int height)
+{
+	int	i;
+
+	if (!matrix)
+		return ;
+	i = 0;
+	while (i < height)
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
+/**
+ * @brief Free all allocated memory in t_game structure
+ * 
+ * @param game The game structure to free
+ */
+void	s_free(t_game *game)
+{
 	if (!game)
 		return ;
-	if (game->map.map) 
-		free(game->map.map);
-	i = -1;
+
+	if (game->data.floor)
+		c_free(game->data.floor);
+	if (game->data.ceiling)
+		c_free(game->data.ceiling);
+	if (game->data.north_texture_path)
+		free(game->data.north_texture_path);
+	if (game->data.south_texture_path)
+		free(game->data.south_texture_path);
+	if (game->data.east_texture_path)
+		free(game->data.east_texture_path);
+	if (game->data.west_texture_path)
+		free(game->data.west_texture_path);
+	if (game->data.map_grid)
+		free_split(game->data.map_grid);
 	if (game->map.matrix)
-	{
-		while (++i < game->map.rows)
-			free(game->map.matrix[i]);
-		free(game->map.matrix);
-	}
-	if (game->map.coins)
-		free(game->map.coins);
-	free_graphic(game);
-	if (game->graphics.win)
-		mlx_destroy_window(game->graphics.mlx, game->graphics.win);
-	if (game->graphics.mlx)
-		mlx_destroy_display(game->graphics.mlx);
-	if (game->graphics.mlx)
-		free(game->graphics.mlx);
-	free(game);
+		free_matrix(game->map.matrix, game->map.map_height);
+	if (game)
+		free(game);
 }
+
+
+/**
+ * @brief Free all allocated memory in t_game structure
+ * 
+ * @param game The game structure to free
+ */
+void	c_free(t_rgb *color)
+{
+	if (!color)
+		return ;
+	free(color);
+}
+

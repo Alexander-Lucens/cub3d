@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
+#    By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/11/04 11:13:20 by akuzmin          ###   ########.fr        #
+#    Updated: 2025/11/04 16:55:00 by lkramer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ SRCS		:=	main.c \
 				check_map_grid.c check_border.c check_map.c \
 				check_textures.c dfs.c key_press.c move_player.c \
 				tests_init.c  main_test.c  maps.c  \
-				tests.c  tests_utils.c  validator.c
+				tests.c  tests_utils.c  validator.c \
+				cub_free.c map_to_matrix.c ft_error.c \
+				close_game.c
 
 OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 
@@ -45,9 +47,9 @@ LIBFT		:=	$(LIBFT_DIR)/$(LIBFT_NAME)
 
 CC			:=	cc
 
-CFLAGS		:=	-Wall -Wextra -Werror
+CFLAGS		:=	-Wall -Wextra -Werror -g
 
-g: CFLAGS	+=	-g
+# g: CFLAGS	+=	-g
 
 CPPFLAGS	:=	-I$(INC_DIR) -I$(LIBFT_DIR)/include
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_graphics.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/03 09:43:29 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 18:29:11 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ int	init_graphics(t_game *game)
 		return (perror("init_graphics: win game pointer"), 1);
 	init_images(game);
 	if (game->is_error)
-		exit(EXIT_FAILURE); // <-- Reaplace with some safe exit programm with cleaning of all data
+		exit(ft_error(game, 103));
 }

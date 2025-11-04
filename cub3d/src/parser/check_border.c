@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/31 17:07:02 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/04 18:02:08 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ void	check_border(t_game *game)
 				|| game->map.matrix[i][j] == 'E'
 				|| game->map.matrix[i][j] == 'W')
 				&& is_on_map_edge(game, i, j))
-			{
 				return ;
-				// ft_error(game, 104);
-			}
 			j++;
 		}
 		i++;

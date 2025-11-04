@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 11:27:37 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 17:40:50 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,24 @@ int	parser_test_map(t_test_data *data)
     if (ret)
         return (PRINT_FAIL("validator: Parser test failed."), 1);
     return (PRINT_SUCCESS("validator: Parser test passed."), 0);
+}
+
+
+/**
+ * @brief Free test parsed data structure (for expect data from parsed_data_mapX)
+ * 
+ * @param data Test parsed data to free
+ */
+void test_data_free(t_parsed_data *data)
+{
+	if (!data)
+		return ;
+
+	if (data->floor)
+		c_free(data->floor);
+	if (data->ceiling)
+		c_free(data->ceiling);
+	if (data->map_grid)
+		free(data->map_grid);
+	free(data);
 }

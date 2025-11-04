@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 19:43:27 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/04 18:18:28 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	code_200(int status_code)
 int	ft_error(t_game *game, int status_code)
 {
 	if (status_code == 1)
-		ft_printf("Error code: %d: Invalid map extension. Must be .ber\n", \
+		ft_printf("Error code: %d: Invalid map extension. Must be .cub\n", \
 			status_code);
 	code_100(status_code);
 	code_200(status_code);

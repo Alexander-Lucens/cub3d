@@ -6,7 +6,7 @@
 #    By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/10/30 21:18:19 by lkramer          ###   ########.fr        #
+#    Updated: 2025/11/04 16:23:05 by lkramer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS		:=	init.c  main.c  maps.c  tests.c  utils.c  validator.c \
 				../../src/parser/check_map.c \
 				../../src/parser/check_textures.c \
 				../../src/parser/dfs.c \
+				../../src/core/cub_free.c \
 
 OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 
@@ -48,7 +49,7 @@ LIBFT		:=	$(LIBFT_DIR)/$(LIBFT_NAME)
 
 CC			:=	cc
 
-CFLAGS		:=	-Wall -Wextra -Werror
+CFLAGS		:=	-Wall -Wextra -Werror -g
 
 g: CFLAGS	+=	-g
 
