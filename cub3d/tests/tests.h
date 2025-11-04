@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 11:24:16 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 18:20:59 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int		validate_colors(t_test_data *data);
 int		validate_textures_path(t_test_data *data);
 int		validate_map_grid(t_test_data *data);
 int		parser_test_map(t_test_data *data);
+void	test_data_free(t_parsed_data *data);
+
 /* **************************************************************************** */
 
 /* parsed_data_maps.c ********************************************************* */

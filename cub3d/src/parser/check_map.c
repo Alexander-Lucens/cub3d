@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:10:47 by lkramer           #+#    #+#             */
-/*   Updated: 2025/10/31 17:24:11 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/04 16:18:47 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	valid_map_chars(char **map_grid)
 			c = map_grid[i][j];
 			if (c != '0' && c != '1' && c != 'N'
 				&& c != 'S' && c != 'E' && c != 'W'
-				&& c != ' ' && c != '\t')
+				&& c != ' ')
 				return (0);
 			j++;
 		}
@@ -75,16 +75,7 @@ static int	player_info(t_game *game, char **map_grid)
 			c = map_grid[i][j];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			{
-				game->player.position.x = (float)j;
-				game->player.position.y = (float)i;
-				if (c == 'N')
-					game->player.direction = init_tpos(0, -1);
-				else if (c == 'S')
-					game->player.direction = init_tpos(0, 1);
-				else if (c == 'E')
-					game->player.direction = init_tpos(1, 0);
-				else if (c == 'W')
-					game->player.direction = init_tpos(-1, 0);
+				init_player_data(game, c, j, i);
 				return (1);
 			}
 			j++;

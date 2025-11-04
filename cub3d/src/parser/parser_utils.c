@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:17:45 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/04 11:11:33 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 18:14:23 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,6 @@ int	check_white_spaces_end_of_str(char **lines, int *i)
 	}
 	(*i)++;
 	return (1);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
 }
 
 void	free_dfs_visited(t_dfs *data, int rows)
@@ -92,8 +77,7 @@ void	check_map_extension(char *map)
 
 	i = ft_strlen(map);
 	if (i >= 4 && ft_strncmp(map + i - 4, ".cub", 4) != 0)
-		printf("Wrong extension");
-	// ft_error(game, 1);
+		ft_error(NULL, 1);
 }
 
 int	count_lines(char **lines, int start_idx)
@@ -112,3 +96,4 @@ int	count_lines(char **lines, int start_idx)
 	}
 	return (line_count);
 }
+

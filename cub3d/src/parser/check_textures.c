@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:22:35 by lkramer           #+#    #+#             */
-/*   Updated: 2025/10/31 17:49:54 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/04 17:04:59 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static t_rgb	*create_rgb_color(int r, int g, int b)
  */
 int	parse_color_path(t_game *game, char *color_str, char *color_type)
 {
-	int	rgb[3];
+	int		rgb[3];
 	t_rgb	*color;
 
 	if (!parse_rgb_values(color_str, rgb))
@@ -100,7 +100,7 @@ int	parse_color_path(t_game *game, char *color_str, char *color_type)
 		return (0);
 	color = create_rgb_color(rgb[0], rgb[1], rgb[2]);
 	if (!color)
-		return (0);
+		return (free(color), 0);
 	if (ft_strcmp(color_type, FLOOR_COLOR) == 0)
 		game->data.floor = color;
 	else if (ft_strcmp(color_type, CEILING_COLOR) == 0)

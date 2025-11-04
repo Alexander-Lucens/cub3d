@@ -18,7 +18,7 @@ t_parsed_data *parsed_data_map0(void)
 	if (!data)
 		return (NULL);
 	
-	char **grid = ft_calloc(sizeof(char*), MAP_0_HEIGHT);
+	char **grid = ft_calloc(sizeof(char*), MAP_0_HEIGHT + 1);
 	if (!grid)
 		return (NULL);
 	
@@ -53,7 +53,7 @@ t_parsed_data *parsed_data_map1(void)
 	if (!data)
 		return (NULL);
 	
-	char **grid = ft_calloc(sizeof(char*), MAP_1_HEIGHT);
+	char **grid = ft_calloc(sizeof(char*), MAP_1_HEIGHT + 1);
 	if (!grid)
 		return (NULL);
 	
@@ -82,7 +82,7 @@ t_parsed_data *parsed_data_map2(void)
 	if (!data)
 		return (NULL);
 	
-	char **grid = ft_calloc(sizeof(char*), MAP_2_HEIGHT);
+	char **grid = ft_calloc(sizeof(char*), MAP_2_HEIGHT + 1);
 	if (!grid)
 		return (NULL);
 	

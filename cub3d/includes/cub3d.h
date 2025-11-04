@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 12:01:52 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/04 18:46:14 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,14 @@ char	*read_file(int fd);
 int		check_white_spaces_end_of_str(char **lines, int *i);
 int		validate_all_data(t_game *game);
 void	free_split(char **split);
+void	free_matrix(int **matrix, int height);
 void	free_dfs_visited(t_dfs *data, int rows);
+
+/* ************************** Initialization******************************** */
+
+void	init_player_data(t_game *game, char player_char, int pos_x, int pos_y);
 int		count_lines(char **lines, int start_idx);
+int		**convert_map_to_matrix(char **map_grid, int height, int width);
 
 int	parse_texture_path(t_game *game, char *path_str, char *texture_type);
 int	parse_color_path(t_game *game, char *color_str, char *color_type);
@@ -100,6 +106,8 @@ int	parse_color_path(t_game *game, char *color_str, char *color_type);
 
 void	display_game(t_game *game);
 void	s_free(t_game *game);
+void	c_free(t_rgb *color);
+
 /* **************************************************************************** */
 
 
