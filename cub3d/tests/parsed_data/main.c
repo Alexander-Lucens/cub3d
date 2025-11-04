@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 21:44:09 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/03 14:57:45 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,31 @@ t_parsed_data	*fake_parser(char *path)
 	return (fake);
 }
 
+t_game	*parse_cub_file(t_game *game, char *map_address);
+
 int main(void)
 {
 	int ret;
 
 	ft_printf("=== PARSER TESTING SUITE ===\n\n");
 	
-	ft_printf("----- Starts validation of parser -----\n");
-	ret = run_as_validator(fake_parser);
+	// ft_printf("----- Starts validation of parser -----\n");
+	// ret = run_as_validator(fake_parser);
 
-	/* ft_printf("----- Testing real parser -----\n");
-    ret = run_as_validator(test_parser_wrapper);   */
+	ft_printf("----- Testing real parser -----\n");
+    ret = run_as_validator_game(parse_cub_file);
+	if (ret) PRINT_SUCCESS("validator pass.");
+	ft_printf("----- END real parser -----\n");
 
 	ft_printf("----- Testing individual parser functions -----\n");
-    test_parse_texture_path();
-    test_parse_color();
-	test_parse_cub_file();
-	
+    test_valid_parse_texture_path();
+	test_invalid_parse_texture_path();
+    test_valid_parse_color();
+	test_invalid_parse_color();
+	test_valid_parse_cub_file();
+	test_valid1_parse_cub_file();
+	test_valid2_parse_cub_file();
+
 	ft_printf("\n------- END OF VALIDATION -------\n");
-	return (ret);	
+	return (ret);
 }
