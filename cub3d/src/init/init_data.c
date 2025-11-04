@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 19:41:10 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/10/31 11:07:40 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-/**
- * @brief Not needed because maps will be not rectangular
- * 
- */
-// static void	check_ordinarity_of_lines(t_game *game)
-// {
-// 	int	row;
-// 	int	i;
-
-// 	i = -1;
-// 	row = 0;
-// 	while (game->map.map[++i] != '\0')
-// 	{
-// 		if (game->map.map[i] == '\n')
-// 			row++;
-// 		if (game->map.map[i] != '\n' && 
-// 			(game->map.cols) * (row) + (row - 1) == i)
-// 			ft_error(game, 102);
-// 	}
-// }
-
 
 /** 
  * @brief Read file from given fd and allocated and assigned data as a string.

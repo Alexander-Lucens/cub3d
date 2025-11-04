@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/24 17:33:24 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/03 09:31:48 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 
 /* **************************************************************************** */
 
-# define	SEGMENT_SIZE 10
+// # define	SEGMENT_SIZE 10
 
-# define	MOVE_DELAY 1000
+# define	MOVE_DELAY 1000 // if allowed time -> use time instead
 
 /* **************************************************************************** */
 
@@ -43,6 +43,10 @@
 # define	EAST			"E"
 # define	NORTH			"N"
 
+# define	IMG_SIZE		10
+
+# define	DEF_WIN_HEIGHT	960
+# define	DEF_WIN_WIDTH	1280
 
 /* **************************************************************************** */
 
@@ -107,6 +111,22 @@ typedef struct s_dfs
 /* **************************************************************************** */
 
 /**
+ * @brief 
+ * 
+ */
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_image;
+/* **************************************************************************** */
+
+/**
  * @brief Graphics structure. Stores MLX things and textures.
  * 
  */
@@ -114,12 +134,13 @@ typedef struct s_graphics
 {
 	void	*mlx;
 	void	*window;
-	void	*floor;	
-	void	*ceiling;
-	void	*north_texture;
-	void	*south_texture;
-	void	*east_texture;
-	void	*west_texture;
+	int		floor_color;
+	int		ceiling_color;
+	t_image	north;
+	t_image	south;
+	t_image	east;
+	t_image	west;
+	t_image	buffer;
 }	t_graphics;
 /* **************************************************************************** */
 
@@ -153,6 +174,7 @@ typedef struct s_controls
  * @brief Consist basic data about player as:
  * 1. Position;
  * 2. Direction;
+ * 3. plane - vector of camera
  * controls - And keys wich were presed to move player(change position and direction);
  * delay - duration of delay from key press to action
  */
@@ -160,6 +182,7 @@ typedef struct s_player
 {
 	t_pos		position;
 	t_pos		direction;
+	t_pos		plane; 
 	t_controls	controls;
 	int			delay;
 }	t_player;
@@ -179,8 +202,8 @@ typedef struct s_rgb
  */
 typedef struct s_parsed_data
 {
-	t_rgb	*floor;	
-	t_rgb	*ceiling;
+	t_rgb	floor;	
+	t_rgb	ceiling;
 	char	*north_texture_path;
 	char	*south_texture_path;
 	char	*east_texture_path;
@@ -200,6 +223,7 @@ typedef struct s_game
 	t_graphics		graphics;
 	t_map			map;
 	t_player		player;
+	int				is_error;
 }	t_game;
 /* **************************************************************************** */
 

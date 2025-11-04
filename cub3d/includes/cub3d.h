@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
 /*   Updated: 2025/10/31 17:49:00 by lkramer          ###   ########.fr       */
@@ -36,8 +36,10 @@ char	*get_next_line(int fd);
 
 // Logic
 int		close_game(void *param);
+
 void	check_map_extension(char *map);
-void	init_graphics(t_game *game);
+
+int		init_graphics(t_game *game);
 
 
 void	check_border(t_game *game);
