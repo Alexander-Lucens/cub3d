@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <string.h>
+# include <math.h>
 
 /* **************************************************************************** */
 
@@ -32,7 +33,8 @@
 
 // # define	SEGMENT_SIZE 10
 
-# define	MOVE_DELAY 1000 // if allowed time -> use time instead
+# define	MOVE_DELAY 5
+# define	MOVE_SPEED 0.1f
 
 /* **************************************************************************** */
 
@@ -84,10 +86,7 @@ typedef enum e_cell
 	CELL_VOID   = -1,  // ' ' - пустота (вне карты)
 	CELL_FLOOR  = 0,   // '0' - пол, можно идти
 	CELL_WALL   = 1,   // '1' - стена, нельзя пройти
-	CELL_NORTH  = 2,   // 'N' - игрок смотрит на север
-	CELL_SOUTH  = 3,   // 'S' - игрок смотрит на юг
-	CELL_EAST   = 4,   // 'E' - игрок смотрит на восток
-	CELL_WEST   = 5    // 'W' - игрок смотрит на запад
+	CELL_NORTH  = 2,   // Player position -> NSEW will be writen in player.direction
 }	t_cell;
 
 /* **************************************************************************** */
@@ -185,8 +184,8 @@ typedef struct s_controls
  */
 typedef struct s_player
 {
-	t_pos		position;
-	t_pos		direction;
+	t_pos		pos;
+	t_pos		dir; // 
 	t_pos		plane; 
 	t_controls	controls;
 	int			delay;

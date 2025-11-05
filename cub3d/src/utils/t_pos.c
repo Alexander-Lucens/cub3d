@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   check_border.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 23:39:31 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/10/21 16:48:37 by akuzmin          ###   ########.fr       */
+/*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
+/*   Updated: 2025/11/04 18:02:08 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "cub3d.h"
 
-char	*ft_strrchr(const char *s, int c)
+t_pos	tpos(float x, float y)
 {
-	long long		i;
-	unsigned char	ch;
+	t_pos	out;
 
-	ch = (unsigned char)c;
-	i = ft_strlen(s);
-	if (ch == '\0')
-		return ((char *)s + i);
-	while (i >= 0)
-	{
-		if (s[i] == ch)
-			return ((char *)s + i);
-		i--;
-	}
-	return (NULL);
+	out.x = x;
+	out.y = y;
+	return (out);
+}
+
+t_pos	init_tpos(void)
+{
+	t_pos	out;
+
+	out.x = 0.0f;
+	out.y = 0.0f;
+	return (out);
+}
+
+void	tpos_add(t_pos *data, float x, float y)
+{
+	data->x += x;
+	data->y += y;
+}
+
+void	tpos_sub(t_pos *data, float x, float y)
+{
+	data->x -= x;
+	data->y -= y;
 }

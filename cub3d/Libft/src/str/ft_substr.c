@@ -53,31 +53,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	out[len] = '\0';
 	return (out);
 }
-/*
-#include <stdlib.h>
-#include <stdio.h>
-
-void substr_single_tester(int test_number, char *str, \
-unsigned int start, size_t len)
-{
-	char	*strsub;
-	long long l = len;
-	strsub = ft_substr(str, start, len);
-	printf("\nTest %d\nft_substr(%s, %d, %lld) pointer: %p\n", test_number,\
-	str, start, l, str);
-	printf("Output data: %s\nOutout pointer: %p", strsub, strsub);
-}
-
-int		main(void)
-{
-	char	str[] = "lorem ipsum dolor sit amet";
-	substr_single_tester(1, str, 0, 10);
-	substr_single_tester(2, str, 7, 10);
-	substr_single_tester(3, str, 7, 0);
-	substr_single_tester(4, str, 0, 0);
-	substr_single_tester(5, str, 400, 20);
-	//substr_single_tester(6, "hola", 0, 18446744073709551615);
-	
-	return (0);
-}
-*/

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	check_accessibility(t_game *game)
 {
@@ -24,22 +24,13 @@ void	check_accessibility(t_game *game)
 		data.visited[i] = calloc(game->map.map_width, sizeof(int));
 		i++;
 	}
-	if (dfs(*game, (int)game->player.position.x,
-			(int)game->player.position.y, &data)) 
+	if (dfs(*game, (int)game->player.pos.x,
+			(int)game->player.pos.y, &data)) 
 	{
 		free_dfs_visited(&data, game->map.map_height);
 		return ;
 	}
 	free_dfs_visited(&data, game->map.map_height);
-}
-
-t_pos	init_tpos(int x, int y)
-{
-	t_pos	out;
-
-	out.x = x;
-	out.y = y;
-	return (out);
 }
 
 static int	is_on_map_edge(t_game *game, int row, int col)

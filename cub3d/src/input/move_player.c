@@ -10,41 +10,76 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
-// static void	do_a_move(t_game *game, t_pos new, t_pos d)
-// {
-// 	game->player_direction.x = d.x;
-// 	game->player_direction.y = d.y;
-// 	if (new.x < 0 || new.x >= game->map.cols || new.y < 0 || new.y >= game->map.rows)
-// 		return ;
-// 	if (game->map.matrix[new.y][new.x] == '1')
-// 		return ;
-// 	if (game->map.matrix[new.y][new.x] == 'C')
-// 	{
-// 		game->map.coins_left--;
-// 	}
-// 	game->map.matrix[game->map.player.y][game->map.player.x] = '0';
-// 	game->map.matrix[new.y][new.x] = 'P';
-// 	if (game->map.coins_left == 0)
-// 		game->map.matrix[game->map.exit.y][game->map.exit.x] = 'E';
-// 	game->map.player.x = new.x;
-// 	game->map.player.y = new.y;
-// 	game->moves++;
-// }
+/**
+ * @brief Checks if the player can move to the specified position.
+ * 
+ * @param game Pointer to the game structure.
+ * @param new_pos The new position the player wants to move to.
+ * @return int 1 if the move is invalid, 0 otherwise.
+ */
+static int	is_invalid_move(t_game *game, t_pos new_pos)
+{
+    int grid_x = (int)floor(new_pos.x);
+    int grid_y = (int)floor(new_pos.y);
 
-// void	move_player(t_game *game, int dx, int dy)
-// {
-// 	t_pos	new;
-// 	t_pos	d;
+    // Check if the new position is out of bounds
+    if (grid_x < 0 || grid_x >= game->map.map_width ||
+        grid_y < 0 || grid_y >= game->map.map_height)
+        return (1);
 
-// 	new = init_tpos(game->map.player.x + dx, game->map.player.y + dy);
-// 	d = init_tpos(dx, dy);
-// 	do_a_move(game, new, d);
+    // Check if the new position is a wall or void
+    if (game->map.matrix[grid_y][grid_x] == CELL_WALL || 
+        game->map.matrix[grid_y][grid_x] == CELL_VOID)
+        return (1);
 
-// 	// TODO - make display_game_2d(game) to show it from the top and throw reys in to the walls
-// 	// display_game_2d(game);
-// 	// Then
-// 	// TODO - make render(game); That mean render - is modification for display_game();
-// 	display_game(game);
-// }
+    return (0);
+}
+
+
+int update(t_game *game)
+{
+    t_pos   move;
+    t_pos   new;
+
+    if (game->player.controls.left)
+        rotate_player(game, -1);
+    if (game->player.controls.right)
+        rotate_player(game, 1);
+    if (game->player.delay > 0)
+        return (game->player.delay--, /*display_game(game),*/ 0);
+    move = init_tpos();
+    if (game->player.controls.w)
+    {
+        move.x += game->player.dir.x * MOVE_SPEED;
+        move.y += game->player.dir.y * MOVE_SPEED;
+    }
+    if (game->player.controls.s)
+    {
+        move.x -= game->player.dir.x * MOVE_SPEED;
+        move.y -= game->player.dir.y * MOVE_SPEED;
+    }
+
+    if (game->player.controls.a)
+    {
+        move.x -= game->player.plane.x * MOVE_SPEED;
+        move.y -= game->player.plane.y * MOVE_SPEED;
+    }
+    if (game->player.controls.d)
+    {
+        move.x += game->player.plane.x * MOVE_SPEED;
+        move.y += game->player.plane.y * MOVE_SPEED;
+    }
+    if (move.x != 0.0f || move.y != 0.0f)
+    {
+        new = tpos(game->player.pos.x + move.x, game->player.pos.y + move.y);
+        if (!is_invalid_move(game, tpos(new.x, game->player.pos.y)))
+            game->player.pos.x = new.x;
+        if (!is_invalid_move(game, tpos(game->player.pos.x, new.y)))
+            game->player.pos.y = new.y; 
+        game->player.delay = MOVE_DELAY;
+    }
+    // display_game(game);
+    return (0);
+}

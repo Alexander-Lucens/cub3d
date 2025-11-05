@@ -16,7 +16,7 @@ NAME		:=	cub3d
 
 SRC_DIR		:=	src/
 
-SUB_DIR		:=	core/ parser/ render/ input/ init/ ../tests/parsed_data/
+SUB_DIR		:=	core/ parser/ render/ input/ init/ utils/ ../tests/parsed_data/
 
 OBJ_DIR		:=	objs/
 
@@ -31,7 +31,9 @@ SRCS		:=	main.c \
 				tests_init.c  main_test.c  maps.c  \
 				tests.c  tests_utils.c  validator.c \
 				cub_free.c map_to_matrix.c ft_error.c \
-				close_game.c
+				close_game.c exit_game.c \
+				init_graphics.c \
+				t_pos.c
 
 OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 

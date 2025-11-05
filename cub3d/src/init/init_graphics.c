@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 // ALL exit(EXIT_FAILURE) MUST BE REPLACES TO --> cleanup function
 

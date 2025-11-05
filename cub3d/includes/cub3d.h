@@ -20,7 +20,7 @@
 
 /* **************************************************************************** */
 
-/* FAIL/ERROR/SUCCESS OUTPUT TEMPLATE ****************************************** */
+/* FAIL/ERROR/SUCCESS OUTPUT TEMPLATE ***************************************** */
 
 # define PRINT_FAIL(msg) \
 	ft_printf("%s%s FAIL %s%s %s %s\n", BG_RED, WHITE, RESET, RED, msg, RESET)
@@ -32,13 +32,17 @@
 	ft_printf("%s%s SUCCESS %s%s %s %s\n", BG_GREEN, BLACK, RESET, GREEN, msg, RESET)
 /* **************************************************************************** */
 
-	
-t_pos	init_tpos(int x, int y);
+/* t_pos ********************************************************************** */
+void	tpos_sub(t_pos *data, float x, float y);
+void	tpos_add(t_pos *data, float x, float y);
+t_pos	init_tpos(void);
+t_pos	tpos(float x, float y);
+/* **************************************************************************** */
+
+/* GET NEXT LINE ************************************************************** */
 
 char	*get_next_line(int fd);
-
-
-// int		main(int ac, char **av);
+/* **************************************************************************** */
 
 /* TESTS ********************************************************************** */
 
@@ -69,8 +73,9 @@ int		ft_error(t_game *game, int status_code);
 void	move_player(t_game *game, int dx, int dy);
 
 
-/* ************************** Remains the same ******************************** */
+/* INPUTS ******************************************************************** */
 
+void	rotate_player(t_game *game, int dir);
 int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
 int		update(t_game *game);
@@ -89,7 +94,7 @@ void	free_split(char **split);
 void	free_matrix(int **matrix, int height);
 void	free_dfs_visited(t_dfs *data, int rows);
 
-/* ************************** Initialization******************************** */
+/* ************************** Initialization ******************************** */
 
 void	init_player_data(t_game *game, char player_char, int pos_x, int pos_y);
 int		count_lines(char **lines, int start_idx);
@@ -98,17 +103,15 @@ int		**convert_map_to_matrix(char **map_grid, int height, int width);
 int	parse_texture_path(t_game *game, char *path_str, char *texture_type);
 int	parse_color_path(t_game *game, char *color_str, char *color_type);
 
-
-
 /* **************************************************************************** */
 
-/* ****************************** Change ************************************** */
+/* CLEAN UP ******************************************************************* */
 
-void	display_game(t_game *game);
 void	s_free(t_game *game);
 void	c_free(t_rgb *color);
-
 /* **************************************************************************** */
+
+void	display_game(t_game *game);
 
 
 #endif

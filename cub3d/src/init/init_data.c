@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 /** 
  * @brief Read file from given fd and allocated and assigned data as a string.
@@ -40,13 +40,6 @@ char	*read_file(int fd)
 }
 
 /**
- * @brief Initialize and validate parsed file data 
- * 
- * @param game 
- * @param map_address 
- * @return int * 
- */
-/**
  * @brief Initialize player data from map grid
  * 
  * @param game Pointer to the main game structure
@@ -57,17 +50,17 @@ char	*read_file(int fd)
  */
 void	init_player_data(t_game *game, char player_char, int pos_x, int pos_y)
 {
-	game->player.position.x = (float)pos_x;
-	game->player.position.y = (float)pos_y;
+	game->player.pos.x = (float)pos_x;
+	game->player.pos.y = (float)pos_y;
 	
 	if (player_char == 'N')
-		game->player.direction = init_tpos(0, -1);
+		game->player.dir = tpos(0, -1);
 	else if (player_char == 'S')
-		game->player.direction = init_tpos(0, 1);
+		game->player.dir = tpos(0, 1);
 	else if (player_char == 'E')
-		game->player.direction = init_tpos(1, 0);
+		game->player.dir = tpos(1, 0);
 	else if (player_char == 'W')
-		game->player.direction = init_tpos(-1, 0);
+		game->player.dir = tpos(-1, 0);
 }
 
 
