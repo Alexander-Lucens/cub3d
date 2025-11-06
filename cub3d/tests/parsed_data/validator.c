@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 17:39:58 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/06 17:02:19 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ int	run_as_validator_game(t_game *(*func)(t_game *, char *))
 	s_free(game[1]);
 	s_free(game[2]);
 	if (ret)
-		return (PRINT_SUCCESS("validator: faild."), 1);
+		return (PRINT_FAIL("validator: faild."), 1);
 	return (PRINT_SUCCESS("validator: pass."), 0);
 }

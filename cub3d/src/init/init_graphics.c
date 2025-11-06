@@ -14,6 +14,23 @@
 
 int create_int_rgb(const t_rgb *color);
 
+void    init_buffer(t_game *game)
+{
+    game->graphics.buffer.img = mlx_new_image(game->graphics.mlx,
+            DEF_WIN_WIDTH, DEF_WIN_HEIGHT);
+    if (!game->graphics.buffer.img)
+    {
+        ft_error(game, 103);
+        return;
+    }
+    game->graphics.buffer.addr = mlx_get_data_addr(
+            game->graphics.buffer.img,
+            &game->graphics.buffer.bpp,
+            &game->graphics.buffer.line_len,
+            &game->graphics.buffer.endian
+            );
+}
+
 static int init_window(t_game *game) 
 {
 	int	width;
@@ -76,5 +93,6 @@ int	init_graphics(t_game *game)
 	if (init_images(game))
 		return (PRINT_ERROR("images can not be loaded"), \
 			cleanup_graphics(game), 1);
+	init_buffer(game);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 18:14:38 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:54:59 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,16 @@ int main(int ac, char **av)
     //     return (PRINT_ERROR("Invalid parsing\n"), 1);
 
     // game->list = list; 
-    if (parse_cub_file(game, av[1]) == NULL)
-        return (s_free(game), PRINT_ERROR("Parsing failed.\n"), 1);
+    // if (parse_cub_file(game, av[1]) == NULL)
+    //     return (s_free(game), PRINT_ERROR("Parsing failed.\n"), 1);
 
-    if (init_graphics(game))
-        return (PRINT_ERROR("MLX graphic initialisation error.\n"), 1);
+    // if (init_graphics(game))
+    //     return (PRINT_ERROR("MLX graphic initialisation error.\n"), 1);
+
+    if (init_data(game, av[1]))
+        return (s_free(game), 1);
+
+    game->player.last_update_time = get_time_in_us();
 
     mlx_hook(game->graphics.window, 2, 1L << 0, key_press, game);
     mlx_hook(game->graphics.window, 3, 1L << 1, key_release, game);

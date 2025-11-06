@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 18:23:20 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/06 16:59:01 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,3 @@ int	testing(void)
 		return (1);
 	return (0);
 }
-
-// int main(void)
-// {
-// 	if (testing())
-// 		return 
-// }

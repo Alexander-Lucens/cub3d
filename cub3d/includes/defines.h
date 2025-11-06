@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 17:12:06 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/06 17:25:22 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <math.h>
+#include <sys/time.h>
 
 /* **************************************************************************** */
 
@@ -33,8 +34,13 @@
 
 // # define	SEGMENT_SIZE 10
 
-# define	MOVE_DELAY 5
-# define	MOVE_SPEED 0.1f
+// # define	MOVE_DELAY 5
+
+// ~30 FPS -Ю 33333 for ~60 FPS -> 16666
+# define	FRAME_INTERVAL 16666 
+
+# define	MOVE_SPEED 0.5f
+# define	ROTATION_SPEED 0.2f
 
 /* **************************************************************************** */
 
@@ -96,8 +102,8 @@ typedef enum e_cell
  */
 typedef struct s_pos
 {
-	float	x; // make float 
-	float	y; // make float
+	float	x;
+	float	y;
 }	t_pos;
 /* **************************************************************************** */
 
@@ -185,10 +191,10 @@ typedef struct s_controls
 typedef struct s_player
 {
 	t_pos		pos;
-	t_pos		dir; // 
+	t_pos		dir; 
 	t_pos		plane; 
 	t_controls	controls;
-	int			delay;
+	long long	last_update_time;
 }	t_player;
 /* **************************************************************************** */
 

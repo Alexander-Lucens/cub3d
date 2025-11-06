@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 18:46:14 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:54:44 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 /* **************************************************************************** */
 
 /* t_pos ********************************************************************** */
+
 void	tpos_sub(t_pos *data, float x, float y);
 void	tpos_add(t_pos *data, float x, float y);
 t_pos	init_tpos(void);
@@ -50,38 +51,25 @@ int		testing(void);
 /* **************************************************************************** */
 
 
-
-// Logic
-int		close_game(void *param);
-
+// ELSE NEED TO SORT
 void	check_map_extension(char *map);
-
-int		init_graphics(t_game *game);
-
-
 void	check_border(t_game *game);
-
-int	dfs(t_game game, int x, int y, t_dfs *data);
-
-
+int		dfs(t_game game, int x, int y, t_dfs *data);
 void	check_accessibility(t_game *game);
-
 int		init_data(t_game *game, char *map_addr);
-
 int		ft_error(t_game *game, int status_code);
-
-void	move_player(t_game *game, int dx, int dy);
 
 
 /* INPUTS ******************************************************************** */
 
+int		is_invalid_move(t_game *game, t_pos new_pos);
 void	rotate_player(t_game *game, int dir);
 int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
 int		update(t_game *game);
 /* **************************************************************************** */
 
-/* ************************** Parser******************************** */
+/* PARSER ********************************************************************* */
 
 t_game	*parse_cub_file(t_game *game, char *map_address);
 int		parse_texture_elements(t_game *game, char *content);
@@ -94,16 +82,16 @@ void	free_split(char **split);
 void	free_matrix(int **matrix, int height);
 void	free_dfs_visited(t_dfs *data, int rows);
 
-/* ************************** Initialization ******************************** */
+/* INITS *********************************************************************** */
+
+void    init_buffer(t_game *game);
+int		init_graphics(t_game *game);
 
 void	init_player_data(t_game *game, char player_char, t_pos pos);
-
 int		count_lines(char **lines, int start_idx);
 int		**convert_map_to_matrix(char **map_grid, int height, int width);
-
-int	parse_texture_path(t_game *game, char *path_str, char *texture_type);
-int	parse_color_path(t_game *game, char *color_str, char *color_type);
-
+int		parse_texture_path(t_game *game, char *path_str, char *texture_type);
+int		parse_color_path(t_game *game, char *color_str, char *color_type);
 /* **************************************************************************** */
 
 /* CLEAN UP ******************************************************************* */
@@ -113,7 +101,20 @@ void	s_free(t_game *game);
 void	c_free(t_rgb *color);
 /* **************************************************************************** */
 
-void	display_game(t_game *game);
+/* RENDER ********************************************************************** */
 
+int		close_game(void *param);
+
+void    put_pixel_to_buffer(t_image *buffer, int x, int y, int color);
+int     get_texture_pixel(t_image *tex, int x, int y);
+void    draw_floor_and_ceiling(t_game *game, int x, int draw_start);
+
+void	display_game(t_game *game);
+/* **************************************************************************** */
+
+/* TIME UNITS ***************************************************************** */
+
+long long   get_time_in_us(void);
+/* **************************************************************************** */
 
 #endif

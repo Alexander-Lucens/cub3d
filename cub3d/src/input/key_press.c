@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 10:50:55 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/06 15:47:59 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	rotate_player(t_game *game, int dir)
     float	old_plane_x;
     float	rotation_speed;
 
-    rotation_speed = 0.05 * dir;
+    rotation_speed = ROTATION_SPEED * dir;
     old_dir_x = game->player.dir.x;
     game->player.dir.x = game->player.dir.x * cos(rotation_speed)
         - game->player.dir.y * sin(rotation_speed);

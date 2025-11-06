@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/04 18:20:48 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/06 17:59:40 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	test_valid_parse_texture_path(void)
 	int		result;
 
 	ft_printf(" --- Parser test 3 ---\n");
-	result = parse_texture_path(&game, "./textures/wn0.xpm", NORTH_TEXTURE);
+	result = parse_texture_path(&game, "./textures/north_brick.xpm", NORTH_TEXTURE);
 	if (result && game.data.north_texture_path)
 	{
 		if (game.data.north_texture_path)
