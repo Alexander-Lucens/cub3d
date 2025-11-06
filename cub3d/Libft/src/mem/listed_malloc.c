@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
 
 /**
  * If you paset in path your structure and it's have list of type t_list 
@@ -20,7 +20,6 @@
  */
 void	*listed_malloc(t_list **list, size_t total_size)
 {
-	size_t	total_size;
 	void	*block;
 
 	block = malloc(total_size);

@@ -51,7 +51,7 @@ static int	single_player(char **map_grid)
 		while (map_grid[i][j])
 		{
 			c = map_grid[i][j];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			if (ft_strchr("NSEW", c) != NULL)
 				num_player++;
 			j++;
 		}
@@ -73,9 +73,9 @@ static int	player_info(t_game *game, char **map_grid)
 		while (map_grid[i][j])
 		{
 			c = map_grid[i][j];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			if (ft_strchr("NSEW", c) != NULL)
 			{
-				init_player_data(game, c, j, i);
+				init_player_data(game, c, tpos((float) j, (float) i));
 				return (1);
 			}
 			j++;
@@ -88,19 +88,13 @@ static int	player_info(t_game *game, char **map_grid)
 int	valid_map(t_game *game, char **map_grid)
 {
 	if (!valid_map_chars(map_grid))
-	{
-		printf("valid_map_chars FAILED\n");
-		return (0);
-	}
+		return (PRINT_ERROR("check_map: valid_map_chars FAILED"), 0);
+
 	if (!single_player(map_grid))
-	{
-		printf("single player FAILED\n");
-		return (0);
-	}
+		return (PRINT_ERROR("check_map: single player FAILED"), 0);
+
 	if (!player_info(game, map_grid))
-	{
-		printf("player info FAILED\n");
-		return (0);
-	}
+		return (PRINT_ERROR("check_map: player info FAILED"), 0);
+
 	return (1);
 }

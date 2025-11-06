@@ -86,7 +86,7 @@ typedef enum e_cell
 	CELL_VOID   = -1,  // ' ' - пустота (вне карты)
 	CELL_FLOOR  = 0,   // '0' - пол, можно идти
 	CELL_WALL   = 1,   // '1' - стена, нельзя пройти
-	CELL_NORTH  = 2,   // Player position -> NSEW will be writen in player.direction
+	CELL_PLAYER = 2,   // Player position -> NSEW will be writen in player.direction
 }	t_cell;
 
 /* **************************************************************************** */

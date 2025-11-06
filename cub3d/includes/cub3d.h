@@ -96,7 +96,8 @@ void	free_dfs_visited(t_dfs *data, int rows);
 
 /* ************************** Initialization ******************************** */
 
-void	init_player_data(t_game *game, char player_char, int pos_x, int pos_y);
+void	init_player_data(t_game *game, char player_char, t_pos pos);
+
 int		count_lines(char **lines, int start_idx);
 int		**convert_map_to_matrix(char **map_grid, int height, int width);
 
@@ -107,6 +108,7 @@ int	parse_color_path(t_game *game, char *color_str, char *color_type);
 
 /* CLEAN UP ******************************************************************* */
 
+void	cleanup_graphics(t_game *game);
 void	s_free(t_game *game);
 void	c_free(t_rgb *color);
 /* **************************************************************************** */

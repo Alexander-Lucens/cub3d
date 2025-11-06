@@ -43,6 +43,7 @@ int update(t_game *game)
     t_pos   move;
     t_pos   new;
 
+    
     if (game->player.controls.left)
         rotate_player(game, -1);
     if (game->player.controls.right)

@@ -16,6 +16,7 @@ void	exit_game(t_game *game, int exit_code);
 
 int	key_press(int keycode, t_game *game)
 {
+	printf("Key pressed: %i\n", keycode);
 	if (KEY_W(keycode))
 		game->player.controls.w = 1;
 	else if (KEY_S(keycode))

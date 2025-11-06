@@ -24,18 +24,12 @@ static int	char_to_cell(char c)
 		return (CELL_FLOOR);
 	else if (c == '1')
 		return (CELL_WALL);
-	else if (c == 'N')
-		return (CELL_NORTH);
-	else if (c == 'S')
-		return (CELL_SOUTH);
-	else if (c == 'E')
-		return (CELL_EAST);
-	else if (c == 'W')
-		return (CELL_WEST);
+	else if (ft_strchr("NSEW", c) != NULL)
+		return (CELL_PLAYER);
 	else if (c == ' ')
 		return (CELL_VOID);
 	else
-		return (CELL_VOID);
+		return (CELL_VOID); // I think here need to throw error
 }
 
 /**

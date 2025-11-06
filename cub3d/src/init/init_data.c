@@ -48,19 +48,30 @@ char	*read_file(int fd)
  * @param pos_x Player's x position in the map
  * @param pos_y Player's y position in the map
  */
-void	init_player_data(t_game *game, char player_char, int pos_x, int pos_y)
+void    init_player_data(t_game *game, char player_char, t_pos pos)
 {
-	game->player.pos.x = (float)pos_x;
-	game->player.pos.y = (float)pos_y;
-	
-	if (player_char == 'N')
-		game->player.dir = tpos(0, -1);
-	else if (player_char == 'S')
-		game->player.dir = tpos(0, 1);
-	else if (player_char == 'E')
-		game->player.dir = tpos(1, 0);
-	else if (player_char == 'W')
-		game->player.dir = tpos(-1, 0);
+    game->player.pos.x = (float)pos.x + 0.5f;
+    game->player.pos.y = (float)pos.y + 0.5f;
+    if (player_char == 'N')
+    {
+        game->player.dir = tpos(0, -1);
+        game->player.plane = tpos(0.66, 0);
+    }
+    else if (player_char == 'S')
+    {
+        game->player.dir = tpos(0, 1);
+        game->player.plane = tpos(-0.66, 0);
+    }
+    else if (player_char == 'E')
+    {
+        game->player.dir = tpos(1, 0);
+        game->player.plane = tpos(0, 0.66);
+    }
+    else if (player_char == 'W')
+    {
+        game->player.dir = tpos(-1, 0);
+        game->player.plane = tpos(0, -0.66);
+    }
 }
 
 

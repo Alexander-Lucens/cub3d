@@ -25,14 +25,14 @@ INC_DIR		:=	includes/
 # **************************************************************************** #
 
 SRCS		:=	main.c \
-				parser.c init_data.c parser_utils.c \
+				parser.c parser_utils.c \
 				check_map_grid.c check_border.c check_map.c \
 				check_textures.c dfs.c key_press.c move_player.c \
 				tests_init.c  main_test.c  maps.c  \
 				tests.c  tests_utils.c  validator.c \
 				cub_free.c map_to_matrix.c ft_error.c \
-				close_game.c exit_game.c \
-				init_graphics.c \
+				close_game.c exit_game.c cleanup_graphics.c \
+				init_data.c init_graphics.c init_rgb.c \
 				t_pos.c
 
 OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
@@ -55,7 +55,8 @@ CFLAGS		:=	-Wall -Wextra -Werror -g
 
 CPPFLAGS	:=	-I$(INC_DIR) -I$(LIBFT_DIR)/include
 
-LIBFLAGS	:=	-L$(LIBFT_DIR) -l:$(LIBFT_NAME) -L/usr/lib/X11 -lXext -lX11 -lmlx
+LIBFLAGS	:=	-L$(LIBFT_DIR) -l:$(LIBFT_NAME) \
+				-L/usr/local/lib -lmlx -lXext -lX11 -lm -lz
 
 RM			:=	rm -rf
 

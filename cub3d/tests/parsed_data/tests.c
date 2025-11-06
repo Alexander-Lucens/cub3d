@@ -156,7 +156,7 @@ int	test_valid_parse_cub_file(void)
 	if (result && game->map.matrix && game->data.north_texture_path)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
-			game->player.position.x, game->player.position.y);
+			game->player.pos.x, game->player.pos.y);
 		s_free(game);
 		return (PRINT_SUCCESS("Successfully parsed map0file"), 0);
 	}
@@ -182,7 +182,7 @@ int	test_valid1_parse_cub_file(void)
 	if (result && game->map.matrix && game->data.north_texture_path)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
-			game->player.position.x, game->player.position.y);
+			game->player.pos.x, game->player.pos.y);
 		s_free(game);
 		return (PRINT_SUCCESS("Successfully parsed map1 file"), 0);
 	}
@@ -208,7 +208,7 @@ int	test_valid2_parse_cub_file(void)
 	if (result && game->map.matrix && game->data.north_texture_path)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
-			game->player.position.x, game->player.position.y);
+			game->player.pos.x, game->player.pos.y);
 		s_free(game);
 		return (PRINT_SUCCESS("Successfully parsed map2 file"), 0);
 	}

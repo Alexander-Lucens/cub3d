@@ -23,7 +23,7 @@ void	*ft_calloc(size_t count, size_t size)
 	block = malloc(total_size);
 	if (!block)
 		return (NULL);
-	ft_memset(block, 0, sizeof(block));
+	ft_memset(block, 0, total_size);
 	return (block);
 }
 

@@ -12,42 +12,6 @@
 
 #include "cub3d.h"
 
-// void	safe_free(void *str)
-// {
-// 	if (!str)
-// 		return ;
-// 	free(str);
-// }
-
-/* static void	free_graphic(t_game *game)
-{
-	if (game->graphics.player_right)
-		mlx_destroy_image(game->graphics.mlx, game->graphics.player_right);
-	if (game->graphics.player_left)
-		mlx_destroy_image(game->graphics.mlx, game->graphics.player_left);
-	if (game->graphics.player_top)
-		mlx_destroy_image(game->graphics.mlx, game->graphics.player_top);
-	if (game->graphics.player_bottom)
-		mlx_destroy_image(game->graphics.mlx, game->graphics.player_bottom);
-	if (game->graphics.coins)
-		mlx_destroy_image(game->graphics.mlx, game->graphics.coins);
-	if (game->graphics.exit)
-		mlx_destroy_image(game->graphics.mlx, game->graphics.exit);
-	if (game->graphics.background)
-		mlx_destroy_image(game->graphics.mlx, game->graphics.background);
-	if (game->graphics.border)
-		mlx_destroy_image(game->graphics.mlx, game->graphics.border);
-	game->graphics.player_right = NULL;
-	game->graphics.player_left = NULL;
-	game->graphics.player_top = NULL;
-	game->graphics.player_bottom = NULL;
-	game->graphics.coins = NULL;
-	game->graphics.exit = NULL;
-	game->graphics.background = NULL;
-	game->graphics.border = NULL;
-}
-*/
-
 void	free_split(char **split)
 {
 	int	i;
@@ -94,6 +58,7 @@ void	s_free(t_game *game)
 	if (!game)
 		return ;
 
+	cleanup_graphics(game);
 	if (game->data.floor)
 		c_free(game->data.floor);
 	if (game->data.ceiling)

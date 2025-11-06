@@ -35,7 +35,7 @@ t_game *parse_cub_file(t_game *game, char *map_address)
 		return (free(file_data), NULL);
 	PRINT_SUCCESS("Parse texture passsed");
 	if (!parse_map_grid(game, file_data))
-		return (free(file_data), game);
+		return (free(file_data), NULL);
 	PRINT_SUCCESS("parse map grid passsed");
 	printf("Map dimensions: %d x %d\n",
 		   game->map.map_height, game->map.map_width);
