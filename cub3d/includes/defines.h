@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/06 17:25:22 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/06 18:25:21 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 // ~30 FPS -Ю 33333 for ~60 FPS -> 16666
 # define	FRAME_INTERVAL 16666 
 
-# define	MOVE_SPEED 0.5f
-# define	ROTATION_SPEED 0.2f
+# define	MOVE_SPEED 0.05f
+# define	ROTATION_SPEED 0.005f
 
 /* **************************************************************************** */
 

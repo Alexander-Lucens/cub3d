@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/06 16:01:06 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/06 18:27:10 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int update(t_game *game)
     elapsed = current_time - game->player.last_update_time;
 
     if (elapsed < FRAME_INTERVAL)
-        return (0);
+        return (display_game(game), 0);
 
     game->player.last_update_time = current_time;
 
