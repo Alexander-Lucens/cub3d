@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/07 17:29:30 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/07 17:40:20 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		testing(void);
 
 
 // ELSE NEED TO SORT
-void	check_map_extension(char *map);
+int		check_map_extension(char *map);
 void	check_border(t_game *game);
 int		dfs(t_game game, int x, int y, t_dfs *data);
 void	check_accessibility(t_game *game);

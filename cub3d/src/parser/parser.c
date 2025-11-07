@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:17:01 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/04 16:53:15 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/07 17:43:43 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ t_game *parse_cub_file(t_game *game, char *map_address)
 	char *file_data;
 	int fd;
 
-	check_map_extension(map_address);
+	if (check_map_extension(map_address))
+		return (ft_error(game, "Invalid map extension."), NULL);
 	fd = open(map_address, O_RDONLY);
 	if (fd == -1)
-		ft_error(game, 100);
+		return (ft_error(game, "File is invalid"), NULL);
 	file_data = read_file(fd);
 	close(fd);
 	// printf("File data read, length: %zu\n", ft_strlen(file_data));

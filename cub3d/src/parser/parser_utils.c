@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:17:45 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/04 18:14:23 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/07 17:41:15 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,14 @@ int	validate_all_data(t_game *game)
 	return (1);
 }
 
-void	check_map_extension(char *map)
+int	check_map_extension(char *map)
 {
 	int	i;
 
 	i = ft_strlen(map);
 	if (i >= 4 && ft_strncmp(map + i - 4, ".cub", 4) != 0)
-		ft_error(NULL, 1);
+		return (1);
+	return (0);
 }
 
 int	count_lines(char **lines, int start_idx)
