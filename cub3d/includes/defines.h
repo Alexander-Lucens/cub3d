@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/06 18:25:21 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/07 16:25:44 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 // # define	MOVE_DELAY 5
 
-// ~30 FPS -Ю 33333 for ~60 FPS -> 16666
+// ~30 FPS -> 33333 for ~60 FPS -> 16666
 # define	FRAME_INTERVAL 16666 
 
 # define	MOVE_SPEED 0.05f

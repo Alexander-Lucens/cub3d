@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/06 15:54:59 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/07 17:31:16 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int main(int ac, char **av)
     // t_list  *list; // This one is just check of my feature
 
     if (ac != 2)
-        return (PRINT_ERROR("Usage: ./cub3d <./maps/some_map.cub>\n"), 1);
+        return (PRINT_ERROR("Usage: ./cub3d <./maps/some_map.cub>"), 1);
 
     // game = listed_malloc(&list, sizeof(t_game)); // this as well
     game = ft_calloc(1, sizeof(t_game));
     if (!game)
-        return (PRINT_ERROR("Memory allocation error.\n"), 1);
+        return (PRINT_ERROR("Memory allocation error."), 1);
 
     // if (testing())
     //     return (PRINT_ERROR("Invalid parsing\n"), 1);
@@ -48,7 +48,6 @@ int main(int ac, char **av)
     mlx_loop(game->graphics.mlx);
     
     // ft_lstclear(&list, free); // and this
-    s_free(game);
-    return (PRINT_SUCCESS("Program finished as expected!"), 0);
+    return (s_free(game), PRINT_SUCCESS("Program finished as expected!"), 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/06 15:54:44 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/07 17:29:30 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ void	check_map_extension(char *map);
 void	check_border(t_game *game);
 int		dfs(t_game game, int x, int y, t_dfs *data);
 void	check_accessibility(t_game *game);
+
+
 int		init_data(t_game *game, char *map_addr);
-int		ft_error(t_game *game, int status_code);
+int		ft_error(t_game *game, char *msg);
 
 
 /* INPUTS ******************************************************************** */
@@ -84,7 +86,7 @@ void	free_dfs_visited(t_dfs *data, int rows);
 
 /* INITS *********************************************************************** */
 
-void    init_buffer(t_game *game);
+int		init_buffer(t_game *game);
 int		init_graphics(t_game *game);
 
 void	init_player_data(t_game *game, char player_char, t_pos pos);

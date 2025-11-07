@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/06 17:51:46 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/07 16:25:53 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void display_game(t_game *game)
     while (x < DEF_WIN_WIDTH)
     {
         /** Calculate rey direction */
-        camera_x = 2 * x / (float)DEF_WIN_WIDTH - 1; // x-коорд. на плоскости камеры
+        camera_x = 2 * x / (float)DEF_WIN_WIDTH - 1;
         ray_dir = tpos(game->player.dir.x + game->player.plane.x * camera_x,
         	game->player.dir.y + game->player.plane.y * camera_x);
 
