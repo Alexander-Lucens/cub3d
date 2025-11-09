@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:49:03 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 17:18:17 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	test_valid_parse_texture_path(void)
 	result = parse_texture_path(game,
 			"./textures/north_brick.xpm", NORTH_TEXTURE);
 	if (result && game->data.north_texture_path)
-		return (s_free(game), PRINT_SUCCESS("North texture parsed successfully."));
+		return (s_free(game),
+			PRINT_SUCCESS("North texture parsed successfully."));
 	else
 		return (s_free(game), PRINT_FAIL("North texture parsing failed."));
 }
