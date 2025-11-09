@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:17:23 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:16 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 19:50:45 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	char_to_cell(char c)
 	else if (c == ' ')
 		return (CELL_VOID);
 	else
-		return (CELL_VOID); // I think here need to throw error
+		return (print_error("Invalid char"), CELL_VOID);
 }
 
 /**

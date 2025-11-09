@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:14 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 18:43:00 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	validate_data_initialisation(t_test_data *data)
 {
 	if (!data->origin)
-		return (PRINT_FAIL("Test data ORIGIN is not exits"), 1);
+		return (print_fail("Test data ORIGIN is not exits"), 1);
 	else if (!data->expect)
-		return (PRINT_FAIL("Test data EXPECT is not exits"), 1);
+		return (print_fail("Test data EXPECT is not exits"), 1);
 	if (!data->expect->north_texture_path
 		|| !data->expect->south_texture_path
 		|| !data->expect->west_texture_path
@@ -26,31 +26,31 @@ int	validate_data_initialisation(t_test_data *data)
 		|| !data->origin->south_texture_path
 		|| !data->origin->west_texture_path
 		|| !data->origin->east_texture_path)
-		return (PRINT_FAIL("Test textures path data is not exists"), 1);
+		return (print_fail("Test textures path data is not exists"), 1);
 	if (!data->expect->map_grid || !data->origin->map_grid)
-		return (PRINT_FAIL("Test map grid data is not exits"), 1);
+		return (print_fail("Test map grid data is not exits"), 1);
 	if (!data->expect->ceiling || !data->origin->ceiling)
-		return (PRINT_FAIL("Ceiling color data is not exits"), 1);
+		return (print_fail("Ceiling color data is not exits"), 1);
 	if (!data->expect->floor || !data->origin->floor)
-		return (PRINT_FAIL("Floor color data is not exits"), 1);
-	return (PRINT_SUCCESS("Data initialisation test is passed."), 0);
+		return (print_fail("Floor color data is not exits"), 1);
+	return (print_success("Data initialisation test is passed."), 0);
 }
 
 int	validate_colors(t_test_data *data)
 {
 	if (data->expect->ceiling->r != data->origin->ceiling->r)
-		return (PRINT_FAIL("Ceiling color<RED> validation failed."), 1);
+		return (print_fail("Ceiling color<RED> validation failed."), 1);
 	if (data->expect->ceiling->g != data->origin->ceiling->g)
-		return (PRINT_FAIL("Ceiling color<GREEN> validation failed."), 1);
+		return (print_fail("Ceiling color<GREEN> validation failed."), 1);
 	if (data->expect->ceiling->b != data->origin->ceiling->b)
-		return (PRINT_FAIL("Ceiling color<BLUE> validation failed."), 1);
+		return (print_fail("Ceiling color<BLUE> validation failed."), 1);
 	if (data->expect->floor->r != data->origin->floor->r)
-		return (PRINT_FAIL("Floor color<RED> validation failed."), 1);
+		return (print_fail("Floor color<RED> validation failed."), 1);
 	if (data->expect->floor->g != data->origin->floor->g)
-		return (PRINT_FAIL("Floor color<GREEN> validation failed."), 1);
+		return (print_fail("Floor color<GREEN> validation failed."), 1);
 	if (data->expect->floor->b != data->origin->floor->b)
-		return (PRINT_FAIL("Floor color<BLUE> validation failed."), 1);
-	return (PRINT_SUCCESS("Color validation test is passed."), 0);
+		return (print_fail("Floor color<BLUE> validation failed."), 1);
+	return (print_success("Color validation test is passed."), 0);
 }
 
 int	validate_textures_path(t_test_data *data)
@@ -66,16 +66,16 @@ int	validate_textures_path(t_test_data *data)
 	ret[3] = ft_strcmp(data->expect->east_texture_path,
 			data->origin->east_texture_path);
 	if (ret[0])
-		PRINT_FAIL("--> Textures north path validation failed.");
+		print_fail("--> Textures north path validation failed.");
 	if (ret[1])
-		PRINT_FAIL("--> Textures south path validation failed.");
+		print_fail("--> Textures south path validation failed.");
 	if (ret[2])
-		PRINT_FAIL("--> Textures west path validation failed.");
+		print_fail("--> Textures west path validation failed.");
 	if (ret[3])
-		PRINT_FAIL("--> Textures east path validation failed.");
+		print_fail("--> Textures east path validation failed.");
 	if (ret[0] + ret[1] + ret[2] + ret[3])
-		return (PRINT_FAIL("Textures path validation failed."), 1);
-	return (PRINT_SUCCESS("Textures path validation test is passed."), 0);
+		return (print_fail("Textures path validation failed."), 1);
+	return (print_success("Textures path validation test is passed."), 0);
 }
 
 int	validate_map_grid(t_test_data *data)
@@ -89,10 +89,10 @@ int	validate_map_grid(t_test_data *data)
 		if (ft_strcmp(data->expect->map_grid[i], data->origin->map_grid[i]))
 		{
 			str = ft_strjoin("invalid Map grid at line ", ft_itoa(i));
-			return (PRINT_FAIL(str), 1);
+			return (print_fail(str), 1);
 		}
 	}
-	return (PRINT_SUCCESS("Map grid validation test is passed."), 0);
+	return (print_success("Map grid validation test is passed."), 0);
 }
 
 /**
@@ -107,13 +107,13 @@ int	parser_test_map(t_test_data *data)
 	int	ret;
 
 	if (!data)
-		return (PRINT_FAIL("No test data provided"), 1);
+		return (print_fail("No test data provided"), 1);
 	ret = validate_data_initialisation(data);
 	if (ret)
-		return (PRINT_FAIL("Parser test failed."), 1);
+		return (print_fail("Parser test failed."), 1);
 	ret = validate_colors(data)
 		+ validate_textures_path(data) + validate_map_grid(data);
 	if (ret)
-		return (PRINT_FAIL("Parser test failed."), 1);
-	return (PRINT_SUCCESS("Parser test passed."), 0);
+		return (print_fail("Parser test failed."), 1);
+	return (print_success("Parser test passed."), 0);
 }

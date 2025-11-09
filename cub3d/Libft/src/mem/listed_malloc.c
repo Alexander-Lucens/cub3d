@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listed_malloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:39:31 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:15 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 20:29:20 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /**
  * If you paset in path your structure and it's have list of type t_list 
  * You can store in it pointers to allocated chunks of memory in reverse order, 
- * and then use ft_lst_clear to delete all allocated memory during comand execution
+ * and then use ft_lst_clear to delete all allocated memory during comand 
+ * execution
  * !!! YOU NEED TO BE SHURE THAT 'list' EXIST as t_list *list
  */
 void	*listed_malloc(t_list **list, size_t total_size)

@@ -6,11 +6,46 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:10:47 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:16 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 20:27:08 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/**
+ * @brief Find starting index of the map grid
+ * 
+ * Scans through the file lines to find where the map grid starts.
+ * 
+ * @param lines Array of strings representing each line of the .cub file
+ * @return int Index where map grid starts, or -1 if invalid structure
+ */
+int	validate_start_idx(char **lines)
+{
+	int	i;
+	int	elements_found;
+
+	i = 0;
+	elements_found = 0;
+	while (lines[i])
+	{
+		if (check_white_spaces_end_of_str(lines, &i))
+			continue ;
+		if (ft_strncmp(lines[i], "NO ", 3) == 0
+			|| ft_strncmp(lines[i], "SO ", 3) == 0
+			|| ft_strncmp(lines[i], "WE ", 3) == 0
+			|| ft_strncmp(lines[i], "EA ", 3) == 0
+			|| ft_strncmp(lines[i], "F ", 2) == 0
+			|| ft_strncmp(lines[i], "C ", 2) == 0)
+			elements_found++;
+		else if (elements_found == 6)
+			return (i);
+		else
+			return (print_error("Invalid line in file"), -1);
+		i++;
+	}
+	return (-1);
+}
 
 static int	valid_map_chars(char **map_grid)
 {
@@ -88,13 +123,10 @@ static int	player_info(t_game *game, char **map_grid)
 int	valid_map(t_game *game, char **map_grid)
 {
 	if (!valid_map_chars(map_grid))
-		return (PRINT_ERROR("check_map: valid_map_chars FAILED"), 0);
-
+		return (print_error("check_map: valid_map_chars FAILED"), 0);
 	if (!single_player(map_grid))
-		return (PRINT_ERROR("check_map: single player FAILED"), 0);
-
+		return (print_error("check_map: single player FAILED"), 0);
 	if (!player_info(game, map_grid))
-		return (PRINT_ERROR("check_map: player info FAILED"), 0);
-
+		return (print_error("check_map: player info FAILED"), 0);
 	return (1);
 }

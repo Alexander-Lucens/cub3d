@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 23:43:26 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:14 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 18:45:43 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 # endif
 
 char	*get_next_line(int fd);
-
 char	*sx_free(char **str);
-
 char	*gnl_strdup(char *src);
 char	*gnl_strjoin(char *s1, const char *s2);
 char	*gnl_strchr(const char *s);
