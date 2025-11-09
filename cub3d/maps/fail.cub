@@ -1,7 +1,11 @@
+G 30, 30, 30
+
 NO ./textures/moria/wall
 SO ./textures/moria/wall
 WE ./textures/moria/pillar
 EA ./textures/moria/pillar
+
+111111111111111111111111111111111111111111111111111111111
 
 F 30, 30, 30
 C 50, 50, 55
