@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/06 15:46:51 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 16:23:15 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,40 +48,47 @@ char	*read_file(int fd)
  * @param pos_x Player's x position in the map
  * @param pos_y Player's y position in the map
  */
-void    init_player_data(t_game *game, char player_char, t_pos pos)
+void	init_player_data(t_game *game, char player_char, t_pos pos)
 {
-    game->player.pos.x = (float)pos.x + 0.5f;
-    game->player.pos.y = (float)pos.y + 0.5f;
-    if (player_char == 'N')
-    {
-        game->player.dir = tpos(0, -1);
-        game->player.plane = tpos(0.66, 0);
-    }
-    else if (player_char == 'S')
-    {
-        game->player.dir = tpos(0, 1);
-        game->player.plane = tpos(-0.66, 0);
-    }
-    else if (player_char == 'E')
-    {
-        game->player.dir = tpos(1, 0);
-        game->player.plane = tpos(0, 0.66);
-    }
-    else if (player_char == 'W')
-    {
-        game->player.dir = tpos(-1, 0);
-        game->player.plane = tpos(0, -0.66);
-    }
+	game->player.pos.x = (float)pos.x + 0.5f;
+	game->player.pos.y = (float)pos.y + 0.5f;
+	if (player_char == 'N')
+	{
+		game->player.dir = tpos(0, -1);
+		game->player.plane = tpos(0.66, 0);
+	}
+	else if (player_char == 'S')
+	{
+		game->player.dir = tpos(0, 1);
+		game->player.plane = tpos(-0.66, 0);
+	}
+	else if (player_char == 'E')
+	{
+		game->player.dir = tpos(1, 0);
+		game->player.plane = tpos(0, 0.66);
+	}
+	else if (player_char == 'W')
+	{
+		game->player.dir = tpos(-1, 0);
+		game->player.plane = tpos(0, -0.66);
+	}
 }
 
-
+/**
+ * @brief Main initialisation point of the programm.
+ * Write in game valid data
+ * @param game 
+ * @param map_address 
+ * @return int 1 on error and int 0 of success. 
+ * On error also prints specific error message.
+ */
 int	init_data(t_game *game, char *map_address)
 {
 	if (!parse_cub_file(game, map_address))
 		return (PRINT_ERROR("Parsing failed.\n"), 1);
 	if (testing())
-        return (PRINT_ERROR("Invalid parsing\n"), 1);
+		return (PRINT_ERROR("Invalid parsing\n"), 1);
 	if (init_graphics(game))
-        return (PRINT_ERROR("MLX graphic initialisation error.\n"), 1);
+		return (PRINT_ERROR("MLX graphic initialisation error.\n"), 1);
 	return (0);
 }
