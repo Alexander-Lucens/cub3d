@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_rgb.c                                         :+:      :+:    :+:   */
+/*   test_data_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:15 by akuzmin          ###   ########.fr       */
+/*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
+/*   Updated: 2025/11/09 16:44:59 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "tests.h"
 
-int	create_int_rgb(const t_rgb *color)
+/**
+ * @brief Free test parsed data structure (for expect data from parsed_data_mapX)
+ * 
+ * @param data Test parsed data to free
+ */
+void	test_data_free(t_parsed_data *data)
 {
-	if (!color)
-		return (perror("create_int_rgb: null color pointer"), -1);
-	if ((color->r < 0 || color->r > 255)
-		|| (color->g < 0 || color->g > 255)
-		|| (color->b < 0 || color->b > 255))
-	{
-		return (perror("create_int_rgb: color value out of range"), -1);
-	}
-	return ((color->r << 16) | (color->g << 8) | (color->b));
+	if (!data)
+		return ;
+	if (data->floor)
+		c_free(data->floor);
+	if (data->ceiling)
+		c_free(data->ceiling);
+	if (data->map_grid)
+		free_split(data->map_grid);
+	free(data);
 }

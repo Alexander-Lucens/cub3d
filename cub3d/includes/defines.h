@@ -6,14 +6,14 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/07 16:25:44 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 16:23:14 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-/* **************************************************************************** */
+/* STD + MLX INCLUDES ***************************************************** */
 
 # include <mlx.h>
 # include <unistd.h>
@@ -22,80 +22,67 @@
 # include <fcntl.h>
 # include <string.h>
 # include <math.h>
-#include <sys/time.h>
+# include <sys/time.h>
+/* ************************************************************************ */
 
-/* **************************************************************************** */
+/* LIBFT INCLUDES ********************************************************* */
 
 # include "../Libft/include/get_next_line.h"
 # include "../Libft/include/ft_printf.h"
 # include "../Libft/include/libft.h"
+/* ************************************************************************ */
 
-/* **************************************************************************** */
-
-// # define	SEGMENT_SIZE 10
-
-// # define	MOVE_DELAY 5
+/* GAME SETTINGS ********************************************************** */
 
 // ~30 FPS -> 33333 for ~60 FPS -> 16666
-# define	FRAME_INTERVAL 16666 
+# define FRAME_INTERVAL	16666 
+# define MOVE_SPEED		0.05f
+# define ROTATION_SPEED	0.005f
+# define FLOOR			0
+# define WALL			1
+# define DEF_WIN_HEIGHT	960
+# define DEF_WIN_WIDTH	1280
+# define IMG_SIZE		10
+/* ************************************************************************ */
 
-# define	MOVE_SPEED 0.05f
-# define	ROTATION_SPEED 0.005f
+/* KEYBOAR KEYS *********************************************************** */
 
-/* **************************************************************************** */
+# define L_ARROW		65361
+# define R_ARROW		65363
+# define KEY_W			119
+# define KEY_S			115
+# define KEY_A			97
+# define KEY_D			100
+# define KEY_EXIT		65307
+/* ************************************************************************ */
 
-# define	FLOOR			0
-# define	WALL			1
-# define	SOUTH			"S"
-# define	WEST			"W"
-# define	EAST			"E"
-# define	NORTH			"N"
+/* MAP CHARS ************************************************************** */
 
-# define	IMG_SIZE		10
+# define SOUTH			"S"
+# define WEST			"W"
+# define EAST			"E"
+# define NORTH			"N"
+# define NORTH_TEXTURE	"NO"
+# define SOUTH_TEXTURE	"SO"
+# define WEST_TEXTURE	"WE"
+# define EAST_TEXTURE	"EA"
+# define FLOOR_COLOR		"F"
+# define CEILING_COLOR	"C"
+/* ************************************************************************ */
 
-# define	DEF_WIN_HEIGHT	960
-# define	DEF_WIN_WIDTH	1280
-
-/* **************************************************************************** */
-
-
-# define	L_ARROW(key)	((key) == 123 || (key) == 65361)
-# define	R_ARROW(key)	((key) == 124 || (key) == 65363)
-# define	U_ARROW(key)	((key) == 125 || (key) == 65362) // not needed but in case of bonus
-# define	D_ARROW(key)	((key) == 126 || (key) == 65364) // not needed but in case of bonus
-
-# define	KEY_W(key)		((key) == 13 || (key) == 119)
-# define	KEY_S(key)		((key) == 1	 || (key) == 115)
-# define	KEY_A(key)		((key) == 0  || (key) == 97)
-# define	KEY_D(key)		((key) == 2  || (key) == 100)
-# define	KEY_EXIT(key)	((key) == 53 || (key) == 65307)
-
-
-/* **************************************************************************** */
-
-# define	NORTH_TEXTURE	"NO" // Let's see, but idk where it should be used
-# define	SOUTH_TEXTURE	"SO"
-# define	WEST_TEXTURE	"WE"
-# define	EAST_TEXTURE	"EA"
-
-# define	FLOOR_COLOR		"F"
-# define	CEILING_COLOR	"C"
-
-/* **************************************************************************** */
+/* STRUCTS DEFINE ********************************************************* */
 
 /**
  * @brief enum for easiest way to convert values.
- * 
+ * @param [' ', '0', '1', 'Player'] --> [-1, 0, 1, 2]
  */
 typedef enum e_cell
 {
-	CELL_VOID   = -1,  // ' ' - пустота (вне карты)
-	CELL_FLOOR  = 0,   // '0' - пол, можно идти
-	CELL_WALL   = 1,   // '1' - стена, нельзя пройти
-	CELL_PLAYER = 2,   // Player position -> NSEW will be writen in player.direction
+	CELL_VOID = -1,
+	CELL_FLOOR = 0,
+	CELL_WALL = 1,
+	CELL_PLAYER = 2,
 }	t_cell;
-
-/* **************************************************************************** */
 
 /**
  * @brief Simple Struct to store position date as x & y
@@ -105,22 +92,18 @@ typedef struct s_pos
 	float	x;
 	float	y;
 }	t_pos;
-/* **************************************************************************** */
 
 /**
  * @brief Used in dfs algorithm. Mostly for check is border closed or not.
- * 
  */
 typedef struct s_dfs
 {
 	char	**visited;
 	t_pos	find;
 }	t_dfs;
-/* **************************************************************************** */
 
 /**
  * @brief 
- * 
  */
 typedef struct s_image
 {
@@ -132,11 +115,9 @@ typedef struct s_image
 	int		width;
 	int		height;
 }	t_image;
-/* **************************************************************************** */
 
 /**
  * @brief Graphics structure. Stores MLX things and textures.
- * 
  */
 typedef struct s_graphics
 {
@@ -150,11 +131,10 @@ typedef struct s_graphics
 	t_image	west;
 	t_image	buffer;
 }	t_graphics;
-/* **************************************************************************** */
 
 /**
  * @brief Hold inside Grid of map and maximal height and width.
- * [' ', '0', '1', 'N', 'S', 'E', 'W'] --> [-1, 0, 1, 2, 3, 4, 5]
+ * [' ', '0', '1', 'Player'] --> [-1, 0, 1, 2]
  */
 typedef struct s_map
 {
@@ -162,7 +142,6 @@ typedef struct s_map
 	int		map_width;
 	int		map_height;
 }	t_map;
-/* **************************************************************************** */
 
 /**
  * @brief Keep trach of keys for moovement which were pressed.
@@ -178,25 +157,23 @@ typedef struct s_controls
 	int		left;
 	int		right;
 }	t_controls;
-/* **************************************************************************** */
 
 /**
  * @brief Consist basic data about player as:
- * 1. Position;
- * 2. Direction;
- * 3. plane - vector of camera
- * controls - And keys wich were presed to move player(change position and direction);
- * delay - duration of delay from key press to action
+ * @param pos - Position
+ * @param dir - Direction;
+ * @param palne - vector perpendicular to camera dir
+ * @param controls - hold info about key pressed and released;
+ * @param last_update_time - snapshot of time when its was updated
  */
 typedef struct s_player
 {
 	t_pos		pos;
-	t_pos		dir; 
-	t_pos		plane; 
+	t_pos		dir;
+	t_pos		plane;
 	t_controls	controls;
 	long long	last_update_time;
 }	t_player;
-/* **************************************************************************** */
 
 typedef struct s_rgb
 {
@@ -207,8 +184,7 @@ typedef struct s_rgb
 
 /**
  * @brief RENDER INPUT
- * Render expect this structure
- * from parser 
+ * Render expect this structure from parser 
  */
 typedef struct s_parsed_data
 {
@@ -218,25 +194,16 @@ typedef struct s_parsed_data
 	char	*south_texture_path;
 	char	*east_texture_path;
 	char	*west_texture_path;
-	char	**map_grid; // set of the strings 
+	char	**map_grid;
 }	t_parsed_data;
-/* **************************************************************************** */
-
-/**
- * @brief Lets make error data in one struct
- * holding state 
- */
-typedef struct s_error_data
-{
-	int		is_error;
-	char	*messsage;
-} t_error_data;
-/* **************************************************************************** */
 
 /**
  * @brief Main STRUCTURE
- * Here we storing all date about the game.
- * Could be also added some features later, if needed.
+ * @param data of structure `t_parsed_data`
+ * @param graphics of structure `t_graphics`
+ * @param map of structure `t_map`
+ * @param player of structure `t_player`
+ * @param error of structure `t_error_data` - may be will be depricated
  */
 typedef struct s_game
 {
@@ -244,8 +211,7 @@ typedef struct s_game
 	t_graphics		graphics;
 	t_map			map;
 	t_player		player;
-	t_error_data	error;
 }	t_game;
-/* **************************************************************************** */
+/* ************************************************************************ */
 
 #endif

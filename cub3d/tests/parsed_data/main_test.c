@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/06 16:59:01 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 16:23:14 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	testing(void)
 	int	ret;
 
 	ret = 0;
-
 	ft_printf("=== PARSER TESTING SUITE ===\n\n");
 	ft_printf("----- VALIDATE PARSER -----\n");
 	ret = run_as_validator_game(parse_cub_file);

@@ -6,7 +6,7 @@
 #    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/11/06 17:58:36 by akuzmin          ###   ########.fr        #
+#    Updated: 2025/11/09 16:24:25 by akuzmin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,18 @@ INC_DIR		:=	includes/
 
 # **************************************************************************** #
 
-SRCS		:=	main.c \
+SRCS		:=	main.c statusPrints.c \
 				parser.c parser_utils.c \
 				check_map_grid.c check_border.c check_map.c \
 				check_textures.c dfs.c \
-				tests_init.c  main_test.c  maps.c  \
-				tests.c  tests_utils.c  validator.c \
 				cub_free.c map_to_matrix.c ft_error.c \
 				exit_game.c cleanup_graphics.c \
 				init_data.c init_graphics.c init_rgb.c \
 				key_press.c move_player.c update.c \
-				close_game.c display_game.c draw_utils.c \
-				t_pos.c time_utils.c
+				close_game.c display_game.c draw_utils.c draw_wall.c init_render_data.c \
+				t_pos.c time_utils.c \
+				tests_init.c test_data_free.c main_test.c map0.c map1.c map2.c \
+				tests_maps.c tests.c tests_utils.c validator.c
 
 OBJS		:=	$(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 
