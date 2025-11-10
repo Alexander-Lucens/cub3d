@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:14 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 18:43:17 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	run_as_validator_game(t_game *(*func)(t_game *, char *))
 
 	game[0] = ft_calloc(1, sizeof(t_game));
 	if (!game[0])
-		return (PRINT_FAIL("Failed to allocate memory"), 1);
+		return (print_fail("Failed to allocate memory"), 1);
 	game[1] = ft_calloc(1, sizeof(t_game));
 	if (!game[1])
-		return (PRINT_FAIL("Failed to allocate memory"), 1);
+		return (print_fail("Failed to allocate memory"), 1);
 	game[2] = ft_calloc(1, sizeof(t_game));
 	if (!game[2])
-		return (PRINT_FAIL("Failed to allocate memory"), 1);
+		return (print_fail("Failed to allocate memory"), 1);
 	ret = 0;
 	game[0] = func(game[0], "./textures/test_maps/map0.cub");
 	game[1] = func(game[1], "./textures/test_maps/map1.cub");
@@ -58,6 +58,6 @@ int	run_as_validator_game(t_game *(*func)(t_game *, char *))
 	s_free(game[1]);
 	s_free(game[2]);
 	if (ret)
-		return (PRINT_FAIL("validator: faild."), 1);
-	return (PRINT_SUCCESS("validator: pass."), 0);
+		return (print_fail("validator: faild."), 1);
+	return (print_success("validator: pass."), 0);
 }

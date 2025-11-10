@@ -6,43 +6,31 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:57:54 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:16 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/10 14:26:42 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/**
- * @brief Find the starting index of the map grid in the file content
- * 
- * This function scans through the file lines to find where the map grid starts.
- * 
- * @param lines Array of strings representing each line of the .cub file
- * @return int Index where map grid starts, or -1 if invalid structure
- */
-static int	validate_start_idx(char **lines)
+static char	**dup_array(char **lines, char **map_lines, int line_count, int i)
 {
-	int	i;
-	int	elements_found;
+	int		j;
+	char	*trimmed;
 
-	i = 0;
-	elements_found = 0;
-	while (lines[i])
+	j = 0;
+	while (lines[i] && j < line_count)
 	{
-		if (check_white_spaces_end_of_str(lines, &i))
-			continue ;
-		if (ft_strncmp(lines[i], "NO ", 3) == 0
-			|| ft_strncmp(lines[i], "SO ", 3) == 0
-			|| ft_strncmp(lines[i], "WE ", 3) == 0
-			|| ft_strncmp(lines[i], "EA ", 3) == 0
-			|| ft_strncmp(lines[i], "F ", 2) == 0
-			|| ft_strncmp(lines[i], "C ", 2) == 0)
-			elements_found++;
-		else if (elements_found == 6)
-			return (i);
+		trimmed = ft_strtrim(lines[i], " \t");
+		if (ft_strlen(trimmed) > 0)
+		{
+			map_lines[j] = ft_strdup(lines[i]);
+			j++;
+		}
+		free(trimmed);
 		i++;
 	}
-	return (-1);
+	map_lines[j] = NULL;
+	return (map_lines);
 }
 
 /**
@@ -61,29 +49,16 @@ static char	**count_map_lines(char **lines, int start_index)
 	char	**map_lines;
 	int		line_count;
 	int		i;
-	int		j;
-	char	*trimmed;
 
 	line_count = count_lines(lines, start_index);
+	printf("%d\n", line_count);
 	if (line_count == 0)
-		return (NULL);
+		return (print_error("Empty map"), NULL);
 	map_lines = malloc(sizeof(char *) * (line_count + 1));
 	if (!map_lines)
 		return (NULL);
 	i = start_index;
-	j = 0;
-	while (lines[i] && j < line_count)
-	{
-		trimmed = ft_strtrim(lines[i], " \t");
-		if (ft_strlen(trimmed) > 0)
-		{
-			map_lines[j] = ft_strdup(lines[i]);
-			j++;
-		}
-		free(trimmed);
-		i++;
-	}
-	map_lines[j] = NULL;
+	map_lines = dup_array(lines, map_lines, line_count, i);
 	return (map_lines);
 }
 
@@ -145,7 +120,7 @@ int	parse_map_grid(t_game *game, char *content)
 
 	lines = ft_split(content, '\n');
 	if (!lines)
-		return (0);
+		return (free_split(lines), 0);
 	map_start_idx = validate_start_idx(lines);
 	if (map_start_idx == -1)
 		return (free_split(lines), 0);
@@ -154,13 +129,14 @@ int	parse_map_grid(t_game *game, char *content)
 		return (free_split(lines), 0);
 	if (!valid_map(game, map_grid))
 		return (free_split(lines), free_split(map_grid), 0);
-	game->data.map_grid = map_grid;
 	game->map.map_height = count_map_rows(map_grid);
 	game->map.map_width = count_longest_line(map_grid);
 	game->map.matrix = convert_map_to_matrix(map_grid, game->map.map_height,
 			game->map.map_width);
-	check_border(game);
-	check_accessibility(game);
+	if (!check_border(game))
+		return (free_split(lines), free_split(map_grid), 0);
+	if (!check_accessibility(game))
+		return (free_split(lines), free_split(map_grid), 0);
 	free_split(lines);
 	game->data.map_grid = map_grid;
 	return (1);

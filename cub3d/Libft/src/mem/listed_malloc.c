@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   listed_malloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:39:31 by akuzmin           #+#    #+#             */
 /*   Updated: 2025/11/10 14:32:09 by akuzmin          ###   ########.fr       */

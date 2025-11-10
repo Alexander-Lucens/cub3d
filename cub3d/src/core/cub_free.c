@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:16 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 20:25:45 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	s_free(t_game *game)
 {
 	if (!game)
 		return ;
-
 	cleanup_graphics(game);
 	if (game->data.floor)
 		c_free(game->data.floor);
@@ -79,7 +78,6 @@ void	s_free(t_game *game)
 		free(game);
 }
 
-
 /**
  * @brief Free all allocated memory in t_game structure
  * 
@@ -91,4 +89,3 @@ void	c_free(t_rgb *color)
 		return ;
 	free(color);
 }
-
