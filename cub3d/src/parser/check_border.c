@@ -6,16 +6,13 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 18:45:19 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 14:35:12 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// Could be problem because we not handeling 
-//situation where map has unclosed border
-// and programm enyway returns nothing
-void	check_accessibility(t_game *game)
+int	check_accessibility(t_game *game)
 {
 	t_dfs	data;
 	int		i;
@@ -31,9 +28,10 @@ void	check_accessibility(t_game *game)
 			(int)game->player.pos.y, &data))
 	{
 		free_dfs_visited(&data, game->map.map_height);
-		return ;
+		return (print_error("Map is not closed: player can reach border"), 0);
 	}
 	free_dfs_visited(&data, game->map.map_height);
+	return (1);
 }
 
 static int	is_on_map_edge(t_game *game, int row, int col)
@@ -55,7 +53,7 @@ static int	is_on_map_edge(t_game *game, int row, int col)
 	return (0);
 }
 
-void	check_border(t_game *game)
+int	check_border(t_game *game)
 {
 	int	i;
 	int	j;
@@ -69,9 +67,11 @@ void	check_border(t_game *game)
 			if ((game->map.matrix[i][j] == CELL_FLOOR
 				|| game->map.matrix[i][j] == CELL_PLAYER)
 				&& is_on_map_edge(game, i, j))
-				return ;
+				return (print_error("Map border 
+						contains floor/player cell"), 0);
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }

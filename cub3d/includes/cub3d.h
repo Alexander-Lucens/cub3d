@@ -57,9 +57,9 @@ int			close_game(void *param);
 /* PARSER ****************************************************************** */
 
 int			check_map_extension(char *map);
-void		check_border(t_game *game);
+int			check_border(t_game *game);
 int			dfs(t_game game, int x, int y, t_dfs *data);
-void		check_accessibility(t_game *game);
+int			check_accessibility(t_game *game);
 
 t_game		*parse_cub_file(t_game *game, char *map_address);
 int			parse_texture_elements(t_game *game, char *content);

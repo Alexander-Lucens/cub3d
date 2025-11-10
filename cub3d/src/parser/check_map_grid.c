@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:57:54 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/09 20:28:03 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 14:26:42 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,13 +129,14 @@ int	parse_map_grid(t_game *game, char *content)
 		return (free_split(lines), 0);
 	if (!valid_map(game, map_grid))
 		return (free_split(lines), free_split(map_grid), 0);
-	game->data.map_grid = map_grid;
 	game->map.map_height = count_map_rows(map_grid);
 	game->map.map_width = count_longest_line(map_grid);
 	game->map.matrix = convert_map_to_matrix(map_grid, game->map.map_height,
 			game->map.map_width);
-	check_border(game);
-	check_accessibility(game);
+	if (!check_border(game))
+		return (free_split(lines), free_split(map_grid), 0);
+	if (!check_accessibility(game))
+		return (free_split(lines), free_split(map_grid), 0);
 	free_split(lines);
 	game->data.map_grid = map_grid;
 	return (1);

@@ -6,15 +6,15 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:16 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/10 13:53:45 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_walkable(char c)
+static int	is_walkable(int cell)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (cell == CELL_FLOOR || cell == CELL_PLAYER);
 }
 
 /**
