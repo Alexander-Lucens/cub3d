@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:39:31 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:14 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/10 14:39:37 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include <unistd.h>
 
 /////////////// Part 1 ///////////////////////////
+
 int		ft_atoi(const char *str);
+
+int		ft_atoi_extra(int *out, const char *str);
+
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_isalpha(int c);
