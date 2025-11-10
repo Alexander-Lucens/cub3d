@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:22:35 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:16 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/10 15:24:48 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	parse_rgb_values(char *color_str, int rgb[3])
 {
 	char	**rgb_values;
 	char	*trimmed;
+	int		ret;
 
 	trimmed = ft_strtrim(color_str, " \t\n");
 	if (!trimmed)
@@ -58,10 +59,10 @@ static int	parse_rgb_values(char *color_str, int rgb[3])
 	if (!rgb_values || !rgb_values[0] || !rgb_values[1]
 		|| !rgb_values[2] || rgb_values[3])
 		return (free_split(rgb_values), free(trimmed), 0);
-	rgb[0] = ft_atoi(rgb_values[0]);
-	rgb[1] = ft_atoi(rgb_values[1]);
-	rgb[2] = ft_atoi(rgb_values[2]);
-	return (free_split(rgb_values), free(trimmed), 1);
+	ret = ft_atoi_extra(&rgb[0], rgb_values[0])
+		+ ft_atoi_extra(&rgb[1], rgb_values[1])
+		+ ft_atoi_extra(&rgb[2], rgb_values[2]);
+	return (free_split(rgb_values), free(trimmed), ret == 3);
 }
 
 /**
