@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 17:18:17 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/09 18:43:07 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int	test_valid_parse_texture_path(void)
 
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (PRINT_FAIL("Failed to allocate memory"), 1);
+		return (print_fail("Failed to allocate memory"), 1);
 	ft_printf(" --- Parser test 3 ---\n");
 	result = parse_texture_path(game,
 			"./textures/north_brick.xpm", NORTH_TEXTURE);
 	if (result && game->data.north_texture_path)
 		return (s_free(game),
-			PRINT_SUCCESS("North texture parsed successfully."));
+			print_success("North texture parsed successfully."));
 	else
-		return (s_free(game), PRINT_FAIL("North texture parsing failed."));
+		return (s_free(game), print_fail("North texture parsing failed."));
 }
 
 int	test_invalid_parse_texture_path(void)
@@ -37,13 +37,13 @@ int	test_invalid_parse_texture_path(void)
 
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (PRINT_FAIL("Failed to allocate memory"), 1);
+		return (print_fail("Failed to allocate memory"), 1);
 	result = parse_texture_path(game,
 			"./nonexistent.xpm", SOUTH_TEXTURE);
 	if (!result)
-		return (s_free(game), PRINT_SUCCESS("Correctly rejected file."));
+		return (s_free(game), print_success("Correctly rejected file."));
 	else
-		return (s_free(game), PRINT_FAIL("Should have rejected file."));
+		return (s_free(game), print_fail("Should have rejected file."));
 }
 
 int	test_valid_parse_color(void)
@@ -53,12 +53,12 @@ int	test_valid_parse_color(void)
 
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (PRINT_FAIL("Failed to allocate memory"), 1);
+		return (print_fail("Failed to allocate memory"), 1);
 	result = parse_color_path(game, "255,128,0", FLOOR_COLOR);
 	if (result && game->data.floor)
-		return (s_free(game), PRINT_SUCCESS("Correctly passed colors."));
+		return (s_free(game), print_success("Correctly passed colors."));
 	else
-		return (s_free(game), PRINT_FAIL("Failed to parse color path."));
+		return (s_free(game), print_fail("Failed to parse color path."));
 }
 
 int	test_invalid_parse_color(void)
@@ -68,11 +68,11 @@ int	test_invalid_parse_color(void)
 
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (PRINT_FAIL("Failed to allocate memory"), 1);
+		return (print_fail("Failed to allocate memory"), 1);
 	result = parse_color_path(game, "300,128,0", CEILING_COLOR);
 	if (!result)
-		return (s_free(game), PRINT_SUCCESS("Correctly rejected path."));
+		return (s_free(game), print_success("Correctly rejected path."));
 	else
 		return (s_free(game),
-			PRINT_FAIL("Should have rejected path, out of range."));
+			print_fail("Should have rejected path, out of range."));
 }
