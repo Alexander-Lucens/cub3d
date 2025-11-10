@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/10 22:43:28 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/10 23:37:19 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int	individual_testing(void)
 
 	ret = 0;
 	ft_printf("----- Testing individual parser functions -----\n");
-	// ret += test_valid_parse_texture_path();
-	// ret += test_invalid_parse_texture_path();
+	ret += test_valid_parse_texture_path();
+	ret += test_invalid_parse_texture_path();
 	ret += test_valid_parse_color();
-	// ret += test_invalid_parse_color();
+	ret += test_invalid_parse_color();
 	ret += test_valid_parse_cub_file();
 	ret += test_valid1_parse_cub_file();
 	ret += test_valid2_parse_cub_file();
@@ -35,7 +35,8 @@ int	testing(void)
 	ret = 0;
 	ft_printf("=== PARSER TESTING SUITE ===\n\n");
 	ft_printf("----- VALIDATE PARSER -----\n");
-	ret = run_as_validator_game(parse_cub_file);
+	ret += run_as_validator_game(parse_cub_file);
+
 	ret += individual_testing();
 	ft_printf("------- END OF VALIDATION -------\n");
 	if (ret)

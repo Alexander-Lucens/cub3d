@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/10 23:20:01 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/10 23:46:00 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ int	run_as_validator_game(int (*func)(t_game *, char *))
 	if (!game[2])
 		return (print_fail("Failed to allocate memory"), 1);
 	ret = 0;
-	ret += func(game[0], "./textures/test_maps/map0.cub");
-	ret += func(game[1], "./textures/test_maps/map1.cub");
-	ret += func(game[2], "./textures/test_maps/map2.cub");
-	ret += parser_test_map0(&game[0]->data);
-	ret += parser_test_map1(&game[1]->data);
-	ret += parser_test_map2(&game[2]->data);
+	if (func(game[0], "./textures/test_maps/map0.cub")
+		|| func(game[1], "./textures/test_maps/map1.cub")
+		|| func(game[2], "./textures/test_maps/map2.cub"))
+		print_fail("validator: fail run parser function.");
+	else
+		ret += parser_test_map0(&game[0]->data)
+		+ parser_test_map1(&game[1]->data)
+		+ parser_test_map2(&game[2]->data);
 	s_free(game[0]);
 	s_free(game[1]);
 	s_free(game[2]);
