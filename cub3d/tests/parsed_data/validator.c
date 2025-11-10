@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 18:43:17 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 23:20:01 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	run_as_validator(t_parsed_data *(*func)(char *))
 }
 
 // Paste parser in this function and get validation
-int	run_as_validator_game(t_game *(*func)(t_game *, char *))
+int	run_as_validator_game(int (*func)(t_game *, char *))
 {
 	int		ret;
 	t_game	*game[3];
@@ -48,9 +48,9 @@ int	run_as_validator_game(t_game *(*func)(t_game *, char *))
 	if (!game[2])
 		return (print_fail("Failed to allocate memory"), 1);
 	ret = 0;
-	game[0] = func(game[0], "./textures/test_maps/map0.cub");
-	game[1] = func(game[1], "./textures/test_maps/map1.cub");
-	game[2] = func(game[2], "./textures/test_maps/map2.cub");
+	ret += func(game[0], "./textures/test_maps/map0.cub");
+	ret += func(game[1], "./textures/test_maps/map1.cub");
+	ret += func(game[2], "./textures/test_maps/map2.cub");
 	ret += parser_test_map0(&game[0]->data);
 	ret += parser_test_map1(&game[1]->data);
 	ret += parser_test_map2(&game[2]->data);
@@ -58,6 +58,6 @@ int	run_as_validator_game(t_game *(*func)(t_game *, char *))
 	s_free(game[1]);
 	s_free(game[2]);
 	if (ret)
-		return (print_fail("validator: faild."), 1);
-	return (print_success("validator: pass."), 0);
+		return (print_fail("validator: faild."));
+	return (print_success("validator - OK."));
 }

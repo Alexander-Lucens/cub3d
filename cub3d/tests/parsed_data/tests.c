@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 18:43:07 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 22:49:05 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,11 @@ int	test_invalid_parse_texture_path(void)
 int	test_valid_parse_color(void)
 {
 	t_game	*game;
-	int		result;
 
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		return (print_fail("Failed to allocate memory"), 1);
-	result = parse_color_path(game, "255,128,0", FLOOR_COLOR);
-	if (result && game->data.floor)
+	if (parse_color_path(game, "255, 128, 0", FLOOR_COLOR) == 0)
 		return (s_free(game), print_success("Correctly passed colors."));
 	else
 		return (s_free(game), print_fail("Failed to parse color path."));

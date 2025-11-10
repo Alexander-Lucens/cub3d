@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:21 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 19:12:01 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 23:17:23 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			check_border(t_game *game);
 int			dfs(t_game game, int x, int y, t_dfs *data);
 int			check_accessibility(t_game *game);
 
-t_game		*parse_cub_file(t_game *game, char *map_address);
+int			parse_cub_file(t_game *game, char *map_address);
 int			parse_texture_elements(t_game *game, char *content);
 int			valid_map(t_game *game, char **map_grid);
 int			validate_start_idx(char **lines);

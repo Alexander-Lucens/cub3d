@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests_maps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 18:47:34 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 23:03:52 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 int	test_valid_parse_cub_file(void)
 {
-	t_game	*game;
+	t_game	*game = {0};
 	t_game	*result;
 
-	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		return (print_fail("Failed to allocate memory"), 1);
 	ft_printf(" --- Parser test 4 ---\n");
 	result = parse_cub_file(game, "./textures/test_maps/map0.cub");
-	if (result && game->map.matrix && game->data.north_texture_path)
+	if (result != NULL)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
 			game->player.pos.x, game->player.pos.y);

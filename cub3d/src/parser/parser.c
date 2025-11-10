@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:17:01 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/10 15:16:25 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 23:20:51 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,23 @@
  *
  * @param game
  * @param map_address
- * @return int *
+ * @return int 1
  */
-t_game	*parse_cub_file(t_game *game, char *map_address)
+int	parse_cub_file(t_game *game, char *map_address)
 {
 	char	*file_data;
 	int		fd;
 
 	if (check_map_extension(map_address))
-		return (ft_error(game, "Invalid map extension."), NULL);
+		return (print_error("Invalid map extension."));
 	fd = open(map_address, O_RDONLY);
 	if (fd == -1)
-		return (ft_error(game, "File is invalid"), NULL);
+		return (print_error("File is invalid"));
 	file_data = read_file(fd);
 	close(fd);
 	if (!parse_texture_elements(game, file_data))
-		return (free(file_data), NULL);
-	print_success("Parse texture passsed");
+		return (free(file_data), 1);
 	if (!parse_map_grid(game, file_data))
-		return (free(file_data), NULL);
-	print_success("parse map grid passsed");
-	return (free(file_data), game);
+		return (free(file_data), 1);
+	return (free(file_data), print_success("parse_cub_file - OK."));
 }

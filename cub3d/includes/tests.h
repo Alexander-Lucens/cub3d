@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 17:16:07 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/10 23:20:46 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				test_valid2_parse_cub_file(void);
 /* validator.c ************************************************************ */
 
 int				run_as_validator(t_parsed_data *(*func)(char *));
-int				run_as_validator_game(t_game *(*func)(t_game *, char *));
+int				run_as_validator_game(int (*func)(t_game *, char *));
 /* ************************************************************************ */
 
 #endif
