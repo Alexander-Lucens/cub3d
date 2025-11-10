@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:57:54 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/10 14:26:42 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 15:17:04 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static char	**count_map_lines(char **lines, int start_index)
 	int		i;
 
 	line_count = count_lines(lines, start_index);
-	printf("%d\n", line_count);
 	if (line_count == 0)
 		return (print_error("Empty map"), NULL);
 	map_lines = malloc(sizeof(char *) * (line_count + 1));
@@ -137,7 +136,17 @@ int	parse_map_grid(t_game *game, char *content)
 		return (free_split(lines), free_split(map_grid), 0);
 	if (!check_accessibility(game))
 		return (free_split(lines), free_split(map_grid), 0);
-	free_split(lines);
 	game->data.map_grid = map_grid;
-	return (1);
+	return (free_split(lines), 1);
 }
+
+/* 
+printf("Converted matrix:\n");
+	for (int i = 0; i < game->map.map_height; i++)
+	{
+		printf("Row %d: ", i);
+		for (int j = 0; j < game->map.map_width; j++)
+			printf("%2d ", game->map.matrix[i][j]);
+		printf("\n");
+	}
+*/

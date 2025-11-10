@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/10 14:35:12 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/10 15:19:49 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	check_border(t_game *game)
 			if ((game->map.matrix[i][j] == CELL_FLOOR
 				|| game->map.matrix[i][j] == CELL_PLAYER)
 				&& is_on_map_edge(game, i, j))
-				return (print_error("Map border 
-						contains floor/player cell"), 0);
+				return (
+					print_error("Map (border) contains space/floor/player"), 0);
 			j++;
 		}
 		i++;
