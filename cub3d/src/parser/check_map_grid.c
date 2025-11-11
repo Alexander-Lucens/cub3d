@@ -6,12 +6,21 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:57:54 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/10 15:17:04 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/11 14:49:49 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Copy non-empty map lines from 
+ * lines[start] into map_lines (NULL-terminated).
+ * 
+ * @param lines Array of all file lines
+ * @param i Index where map grid begins
+ * @param line_count number of lines
+ * @return char** Array of map line strings, NULL-terminated
+ */
 static char	**dup_array(char **lines, char **map_lines, int line_count, int i)
 {
 	int		j;
@@ -35,10 +44,6 @@ static char	**dup_array(char **lines, char **map_lines, int line_count, int i)
 
 /**
  * @brief Extract and create array of map lines from the file content
- * 
- * Creates a new array containing only the map grid lines,
- * starting from the specified index. Each valid map line
- * is duplicated to create an own array.
  * 
  * @param lines Array of all file lines
  * @param start_index Index where map grid begins
@@ -102,14 +107,13 @@ static int	count_longest_line(char **map_grid)
 }
 
 /**
- * @brief Parse and validate the map grid from file content
- * 
- * Populates game->data.map_grid (char**) for render logic
+ * @brief Main map parser and caller of validation
+ * game->data.map_grid (char**) for render logic
  * and game->map.matrix (int**) for game logic.
  * 
  * @param game Pointer to the main game structure to populate
- * @param content Raw file content as a single string
- * @return int 1 on success, 0 on failure
+ * @param content File content as a single string
+ * @return 1 on success, 0 on failure
  */
 int	parse_map_grid(t_game *game, char *content)
 {

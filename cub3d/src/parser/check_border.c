@@ -6,12 +6,18 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/10 15:19:49 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/11 14:49:23 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Check map reachability from player's start using DFS.
+ *
+ * @param game Pointer to game state (contains map and player)
+ * @return 1 if map is closed (success), 0 if player can reach border (error)
+ */
 int	check_accessibility(t_game *game)
 {
 	t_dfs	data;
@@ -34,6 +40,16 @@ int	check_accessibility(t_game *game)
 	return (1);
 }
 
+/**
+ * @brief Checks if a cell is on the map edge or adjacent to void cell.
+ *
+ * Used to detect positions that would make the map open/unbounded.
+ *
+ * @param game Pointer to game state (map matrix and dimensions)
+ * @param row Row index of the cell
+ * @param col Column index of the cell
+ * @return  1 if cell is on/adjacent to edge/void, 0 otherwise
+ */
 static int	is_on_map_edge(t_game *game, int row, int col)
 {
 	if (row == 0 || row == game->map.map_height - 1)
@@ -53,6 +69,12 @@ static int	is_on_map_edge(t_game *game, int row, int col)
 	return (0);
 }
 
+/**
+ * @brief Validate that the map border contains only walls.
+ * 
+ * @param game Pointer to game state (map matrix and dimensions)
+ * @return 1 on success (valid border), 0 on failure
+ */
 int	check_border(t_game *game)
 {
 	int	i;

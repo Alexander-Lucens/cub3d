@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:22:35 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/11 01:48:50 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/11 14:21:08 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ int	parse_texture_path(t_game *game, char *path_str, char *texture_type)
 	return (free(full_path), 1);
 }
 
+/**
+ * @brief Parser for the color path
+ * Splits by separator, checks for whitespaces
+ * @return int * 
+ */
 static int	parse_rgb_values(char *color_str, int *rgb)
 {
 	char	**rgb_values;
@@ -63,7 +68,7 @@ static int	parse_rgb_values(char *color_str, int *rgb)
 
 /**
  * @brief Allocates memory for color variables
- * and stores values in parse_data struct
+ * and stores color values in parse_data struct
  * @return int * 
  */
 static t_rgb	*create_rgb_color(int r, int g, int b)
@@ -110,7 +115,8 @@ int	parse_color_path(t_game *game, char *color_str, char *color_type)
 }
 
 /**
- * @brief Parser for map elements
+ * @brief Main texture parser for 
+ * texture elements
  * 
  * @return int  
  */

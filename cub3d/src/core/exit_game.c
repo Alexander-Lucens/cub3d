@@ -6,16 +6,16 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 18:43:51 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/11 14:13:42 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * @brief 
+ * @brief Frees and exit game
  * 
- * @param
+ * @returns exit_code 
  */
 void	exit_game(t_game *game, int exit_code)
 {

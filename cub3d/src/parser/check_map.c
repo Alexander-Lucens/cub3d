@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:10:47 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/09 20:27:08 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/11 14:35:08 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 /**
  * @brief Find starting index of the map grid
  * 
- * Scans through the file lines to find where the map grid starts.
- * 
- * @param lines Array of strings representing each line of the .cub file
+ * @param lines Array of strings representing lines of the .cub file
  * @return int Index where map grid starts, or -1 if invalid structure
  */
 int	validate_start_idx(char **lines)
@@ -47,19 +45,25 @@ int	validate_start_idx(char **lines)
 	return (-1);
 }
 
-static int	valid_map_chars(char **map_grid)
+/**
+ * @brief Checks valid map characters
+ * @param lines Array of strings lines of the .cub file
+ * @return 1 on success and 
+ * 0 on error when invalid char is found * 
+ */
+static int	valid_map_chars(char **lines)
 {
 	int		i;
 	int		j;
 	char	c;
 
 	i = 0;
-	while (map_grid[i])
+	while (lines[i])
 	{
 		j = 0;
-		while (map_grid[i][j])
+		while (lines[i][j])
 		{
-			c = map_grid[i][j];
+			c = lines[i][j];
 			if (c != '0' && c != '1' && c != 'N'
 				&& c != 'S' && c != 'E' && c != 'W'
 				&& c != ' ')
@@ -71,7 +75,13 @@ static int	valid_map_chars(char **map_grid)
 	return (1);
 }
 
-static int	single_player(char **map_grid)
+/**
+ * @brief Checks for single player on map
+ * @param lines Array of strings all lines of the .cub file
+ * @return 1 on success when only one playe is found 
+ * and 0 on error no or more are found * 
+ */
+static int	single_player(char **lines)
 {
 	int		i;
 	int		j;
@@ -80,12 +90,12 @@ static int	single_player(char **map_grid)
 
 	i = 0;
 	num_player = 0;
-	while (map_grid[i])
+	while (lines[i])
 	{
 		j = 0;
-		while (map_grid[i][j])
+		while (lines[i][j])
 		{
-			c = map_grid[i][j];
+			c = lines[i][j];
 			if (ft_strchr("NSEW", c) != NULL)
 				num_player++;
 			j++;
@@ -95,19 +105,25 @@ static int	single_player(char **map_grid)
 	return (num_player == 1);
 }
 
-static int	player_info(t_game *game, char **map_grid)
+/**
+ * @brief Checks for player starting position
+ * @param lines Array of strings all lines of the .cub file
+ * @return 1 on success when player is found and 
+ * 0 on error no player found * 
+ */
+static int	player_info(t_game *game, char **lines)
 {
 	int		i;
 	int		j;
 	char	c;
 
 	i = 0;
-	while (map_grid[i])
+	while (lines[i])
 	{
 		j = 0;
-		while (map_grid[i][j])
+		while (lines[i][j])
 		{
-			c = map_grid[i][j];
+			c = lines[i][j];
 			if (ft_strchr("NSEW", c) != NULL)
 			{
 				init_player_data(game, c, tpos((float) j, (float) i));
@@ -120,13 +136,18 @@ static int	player_info(t_game *game, char **map_grid)
 	return (0);
 }
 
-int	valid_map(t_game *game, char **map_grid)
+/**
+ * @brief Main caller to validate map info
+ * @param lines Array of strings all lines of the .cub file
+ * @return 1 on success and 0 on error  * 
+ */
+int	valid_map(t_game *game, char **lines)
 {
-	if (!valid_map_chars(map_grid))
+	if (!valid_map_chars(lines))
 		return (print_error("check_map: valid_map_chars FAILED"), 0);
-	if (!single_player(map_grid))
+	if (!single_player(lines))
 		return (print_error("check_map: single player FAILED"), 0);
-	if (!player_info(game, map_grid))
+	if (!player_info(game, lines))
 		return (print_error("check_map: player info FAILED"), 0);
 	return (1);
 }

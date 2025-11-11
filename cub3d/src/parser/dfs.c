@@ -6,20 +6,32 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/10 13:53:45 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/11 14:26:21 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * Checks whether a map cell is traversable
+ * @returns 1 when cell is walkable (floor or player),
+ * otherwise 0.
+ */
 static int	is_walkable(int cell)
 {
 	return (cell == CELL_FLOOR || cell == CELL_PLAYER);
 }
 
 /**
- * Could be used but need to make changes
- * 
+ * Depth-first search to detect map border leaks
+ * @game: current game state containing the map matrix - dimensions
+ * @x: starting x coordinate for the search
+ * @y: starting y coordinate for the search
+ * @data: DFS data (visited matrix)
+ *
+ * @return 1 if search reaches outer border 
+ * (indicating an open/invalid map),
+ * otherwise returns 0.
  */
 int	dfs(t_game game, int x, int y, t_dfs *data)
 {
