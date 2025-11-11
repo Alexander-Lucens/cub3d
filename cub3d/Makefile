@@ -6,7 +6,7 @@
 #    By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:46:56 by akuzmin           #+#    #+#              #
-#    Updated: 2025/11/09 16:24:25 by akuzmin          ###   ########.fr        #
+#    Updated: 2025/11/10 23:58:19 by akuzmin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		:=	cub3d
 
 SRC_DIR		:=	src/
 
-SUB_DIR		:=	core/ parser/ render/ input/ init/ utils/ ../tests/parsed_data/
+SUB_DIR		:=	core/ parser/ render/ input/ init/ utils/ ../tests/
 
 OBJ_DIR		:=	objs/
 

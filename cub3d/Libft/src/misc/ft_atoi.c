@@ -6,11 +6,13 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 21:28:00 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/10 15:09:20 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/11 01:41:30 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
+
+#include <stdio.h>
 
 static int	extra_helper(int *out, char *data, int length)
 {
@@ -25,7 +27,7 @@ static int	extra_helper(int *out, char *data, int length)
 			sign = -1;
 		i++;
 	}
-	while (i < length || i == 1)
+	while (i < length)
 	{
 		if (data[i] >= '0' && data[i] <= '9')
 			*out = *out * 10 + (data[i++] - '0');

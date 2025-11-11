@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/10 23:36:04 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/11 00:37:34 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	test_valid_parse_cub_file(void)
 	if (!game)
 		return (print_fail("Failed to allocate memory"));
 	ft_printf(" --- Parser test 4 ---\n");
-	if (parse_cub_file(game, "./textures/test_maps/map0.cub"))
+	if (parse_cub_file(game, "./tests/test_maps/map0.cub") == 0)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
 			game->player.pos.x, game->player.pos.y);
@@ -39,7 +39,7 @@ int	test_valid1_parse_cub_file(void)
 		return (print_fail("Failed to allocate memory"), 1);
 	ft_memset(game, 0, sizeof(t_game));
 	ft_printf(" --- Parser test 5 ---\n");
-	if (parse_cub_file(game, "./textures/test_maps/map1.cub"))
+	if (parse_cub_file(game, "./tests/test_maps/map1.cub") == 0)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
 			game->player.pos.x, game->player.pos.y);
@@ -58,7 +58,7 @@ int	test_valid2_parse_cub_file(void)
 		return (print_fail("Failed to allocate memory"), 1);
 	ft_memset(game, 0, sizeof(t_game));
 	ft_printf(" --- Parser test 6 ---\n");
-	if (parse_cub_file(game, "./textures/test_maps/map2.cub"))
+	if (parse_cub_file(game, "./tests/test_maps/map2.cub") == 0)
 	{
 		printf("Player at: (%.1f, %.1f)\n",
 			game->player.pos.x, game->player.pos.y);

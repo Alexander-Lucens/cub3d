@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 16:17:01 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/10 23:20:51 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/11 00:48:27 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	parse_cub_file(t_game *game, char *map_address)
 	file_data = read_file(fd);
 	close(fd);
 	if (!parse_texture_elements(game, file_data))
-		return (free(file_data), 1);
+		return (free(file_data), print_fail("Texture elements parser"));
 	if (!parse_map_grid(game, file_data))
-		return (free(file_data), 1);
+		return (free(file_data), print_fail("Map grid parser"));
 	return (free(file_data), print_success("parse_cub_file - OK."));
 }

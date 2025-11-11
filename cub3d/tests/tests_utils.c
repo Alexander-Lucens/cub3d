@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:19:22 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 18:43:00 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/11 00:13:06 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,18 @@ int	validate_data_initialisation(t_test_data *data)
 {
 	if (!data->origin)
 		return (print_fail("Test data ORIGIN is not exits"), 1);
-	else if (!data->expect)
-		return (print_fail("Test data EXPECT is not exits"), 1);
-	if (!data->expect->north_texture_path
-		|| !data->expect->south_texture_path
-		|| !data->expect->west_texture_path
-		|| !data->expect->east_texture_path
-		|| !data->origin->north_texture_path
+	if (!data->origin->north_texture_path
 		|| !data->origin->south_texture_path
 		|| !data->origin->west_texture_path
 		|| !data->origin->east_texture_path)
-		return (print_fail("Test textures path data is not exists"), 1);
-	if (!data->expect->map_grid || !data->origin->map_grid)
-		return (print_fail("Test map grid data is not exits"), 1);
-	if (!data->expect->ceiling || !data->origin->ceiling)
-		return (print_fail("Ceiling color data is not exits"), 1);
-	if (!data->expect->floor || !data->origin->floor)
-		return (print_fail("Floor color data is not exits"), 1);
-	return (print_success("Data initialisation test is passed."), 0);
+		return (print_fail("Test ORIGIN textures path data is not exists"));
+	if (!data->origin->map_grid)
+		return (print_fail("Test ORIGIN map grid data is not exits"));
+	if (!data->origin->ceiling)
+		return (print_fail("Ceiling ORIGIN color data is not exits"));
+	if (!data->origin->floor)
+		return (print_fail("Floor ORIGIN color data is not exits"));
+	return (print_success("Data initialisation test is passed."));
 }
 
 int	validate_colors(t_test_data *data)

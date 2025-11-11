@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:22:35 by lkramer           #+#    #+#             */
-/*   Updated: 2025/11/10 23:21:24 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/11 01:48:50 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,19 @@ int	parse_texture_path(t_game *game, char *path_str, char *texture_type)
 	return (free(full_path), 1);
 }
 
-static int	parse_rgb_values(char *color_str, int rgb[3])
+static int	parse_rgb_values(char *color_str, int *rgb)
 {
 	char	**rgb_values;
-	char	*trimmed;
 	int		ret;
 
-	trimmed = ft_strtrim(color_str, " \t\n");
-	if (!trimmed)
-		return (0);
-	rgb_values = ft_split(trimmed, ',');
+	rgb_values = ft_split(color_str, ',');
 	if (!rgb_values || !rgb_values[0] || !rgb_values[1]
 		|| !rgb_values[2] || rgb_values[3])
-		return (free_split(rgb_values), free(trimmed), 0);
+		return (free_split(rgb_values), 0);
 	ret = ft_atoi_extra(&rgb[0], rgb_values[0])
 		+ ft_atoi_extra(&rgb[1], rgb_values[1])
 		+ ft_atoi_extra(&rgb[2], rgb_values[2]);
-	return (free_split(rgb_values), free(trimmed), ret == 3);
+	return (free_split(rgb_values), ret == 3);
 }
 
 /**
@@ -91,28 +87,32 @@ static t_rgb	*create_rgb_color(int r, int g, int b)
  */
 int	parse_color_path(t_game *game, char *color_str, char *color_type)
 {
-	int		rgb[3];
+	int		*rgb;
 	t_rgb	*color;
 
+	rgb = ft_calloc(3, sizeof(int));
+	if (!rgb)
+		return (print_fail("rgb calloc fails"), 0);
 	if (!parse_rgb_values(color_str, rgb))
-		return (0);
+		return (free(rgb), 0);
 	if (rgb[0] < 0 || rgb[0] > 255 || rgb[1] < 0
 		|| rgb[1] > 255 || rgb[2] < 0 || rgb[2] > 255)
-		return (0);
+		return (free(rgb), 0);
 	color = create_rgb_color(rgb[0], rgb[1], rgb[2]);
 	if (!color)
-		return (free(color), 0);
+		return (free(rgb), print_fail("t_rgb init fails"), 0);
 	if (ft_strcmp(color_type, FLOOR_COLOR) == 0)
 		game->data.floor = color;
 	else if (ft_strcmp(color_type, CEILING_COLOR) == 0)
 		game->data.ceiling = color;
-	return (1);
+	return (free(rgb),
+		print_success("color sucessfuly initialised"), 1);
 }
 
 /**
  * @brief Parser for map elements
  * 
- * @return int * 
+ * @return int  
  */
 int	parse_texture_elements(t_game *game, char *content)
 {
