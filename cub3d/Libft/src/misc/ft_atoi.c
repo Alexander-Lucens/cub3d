@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 21:28:00 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/11 01:41:30 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/11 14:09:00 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static int	extra_helper(int *out, char *data, int length)
 			return (0);
 	}
 	*out = *out * sign;
+	if (*out == 0 && sign == -1)
+		return (0);
 	return (1);
 }
 
