@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:48:36 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 16:23:14 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/11/11 01:09:51 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 
 // ~30 FPS -> 33333 for ~60 FPS -> 16666
 # define FRAME_INTERVAL	16666 
-# define MOVE_SPEED		0.05f
-# define ROTATION_SPEED	0.005f
+# define MOVE_SPEED		0.1f
+# define ROTATION_SPEED	0.01f
 # define FLOOR			0
 # define WALL			1
 # define DEF_WIN_HEIGHT	960

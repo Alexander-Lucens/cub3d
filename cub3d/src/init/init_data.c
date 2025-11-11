@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 07:54:10 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/11/09 20:34:41 by lkramer          ###   ########.fr       */
+/*   Updated: 2025/11/11 01:39:51 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,13 @@ void	init_player_data(t_game *game, char player_char, t_pos pos)
  */
 int	init_data(t_game *game, char *map_address)
 {
-	if (!parse_cub_file(game, map_address))
-		return (print_error("Parsing failed."), 1);
+	if (parse_cub_file(game, map_address))
+		return (print_error("Parsing failed."));
+	if (!game)
+		return (print_error("Game structure is not created!"));
 	if (testing())
-		return (print_error("Invalid parsing."), 1);
+		return (print_error("Invalid parsing."));
 	if (init_graphics(game))
-		return (print_error("MLX graphic initialisation error.\n"), 1);
+		return (print_error("MLX graphic initialisation error."));
 	return (0);
 }
